@@ -23,7 +23,7 @@ void imprimir_lista(Reais p){
         int i = 0;
         printf("\n{ ");
         while(get_pos(p,i,&elem) != 0){
-            printf("%.2f ", elem);
+            printf("%f ", elem);
             i++;
         }
         printf("}\n\n");
@@ -133,7 +133,7 @@ int main(){
                 menu();
                 continue;
             }
-            printf("\n### O Maior Elemento da Lista eh %.2f ###\n\n", elem);
+            printf("\n### O Maior Elemento da Lista eh %f ###\n\n", elem);
             menu();
         }
 

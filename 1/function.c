@@ -107,10 +107,9 @@ int remove_impares(Reais p){
 
     if(p == NULL || lista_vazia(p) == 1) return 0;
 
-    int i, aux;
+    int i;
     for(i = 0; i < p->Fim; i++){
-        aux = p->num[i] * 100; //MULTIPLICACAO NECESSARIA PARA VERIFICAR A PARTE DECIMAL
-        if(aux % 2 != 0){      //SEM NECESSIDADE DE USAR FMOD
+        if((int)p->num[i] % 2 != 0){
             remove_elem(p, p->num[i]);
             i--; //COMANDO NECESSARIO, JA QUE IREI REMOVER O ELEMENTO SE FOR IMPAR, E O PROXIMO Q IREI VERIFICAR
         }       //IRA VIR PARA ESSA POSICAO. SEM ESSE COMANDO, EU NAO FARIA A VERIFICACAO DESSE PROXIMO ELEMENTO
