@@ -1,0 +1,13 @@
+typedef struct no *Lista;
+Lista cria_lista();
+int tamanho(Lista li);
+int iguais(Lista *li, Lista *li2);
+int maior(Lista *li,float *maior);
+Lista intercala(Lista *li, Lista *li2);
+int lista_cheia(Lista *li);
+int lista_vazia(Lista li);
+int insere_ord(Lista *li, float elem);
+int imp(Lista li);
+int esvaziar(Lista *li);
+int remove_ord(Lista *li, float elem);
+int getPos(Lista *li, int pos);
