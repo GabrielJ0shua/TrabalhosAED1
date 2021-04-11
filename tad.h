@@ -1,7 +1,7 @@
 typedef struct no *Lista;
 
 Lista criar_lista();
-int lista_vazia(Lista list);
+int lista_vazia(Lista lista);
 int insere_ord(Lista *lista, int elemento);
 int remove_ord(Lista *lista, int elemento);
 int obtem_valor(Lista *lista, int *elemento, int pos);
