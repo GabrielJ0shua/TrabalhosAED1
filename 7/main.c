@@ -5,7 +5,7 @@
 int main(void){
     int opc,opc1,i,j,aux2;
     char nome_do_soldado[20];
-    Soldado l;
+    Soldado l = iniciaLista();
     do{
         printf("\nEscolha uma opção:\n1 - Inserir o nome dos soldados que estão cercados \n2- Uma das opções para posição inicial da contagem\n3- Sair\n");
         scanf("%d",&opc);
@@ -20,8 +20,6 @@ int main(void){
                     setbuf(stdin,NULL);
                     //inserir(l,nome_do_soldado);
                 }
-                
-                
             break;
 
             case(2):
