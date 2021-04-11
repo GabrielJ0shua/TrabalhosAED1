@@ -1,0 +1,1 @@
+typedef struct soldado *Soldado;
