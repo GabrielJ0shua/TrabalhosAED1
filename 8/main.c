@@ -3,7 +3,7 @@
 
 int main(void)
 {
-    //variaveis auxiliares e lista apontando para NULL
+    //variáveis auxiliares e lista apontando para NULL.
     int opc,i,qnt = 0;
     float x;
     Termo equacao;
@@ -14,7 +14,7 @@ int main(void)
         printf("\nEscolha uma opção:\n1 - Inicializar um polinômio\n2-Inserir um novo termo ak*x^k no polinômio existente\n3-Imprimir P(x)\n4-Eliminar o termo associado à k-ésima potência\n5-Reinicializar um polinômio\n6-Calcular o valor de P(x) para um valor de x solicitado\n7-Sair do sistema\n");
         scanf("%d",&opc);
         switch(opc){
-            // Iniciando a lista
+            //Iniciando a lista
             case(1):
             l = criaLista();
             printf("\nPronto");   
