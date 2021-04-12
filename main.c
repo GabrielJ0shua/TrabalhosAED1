@@ -24,7 +24,7 @@ int main(){
                 printf("Deseja imprimir lista 1, 2 ou 3?: ");
                 do {
                     scanf("%d", &lista);
-                    if (lista < 1 || lista > 3) //se numero n„o for entre 1 e 3 pede outro
+                    if (lista < 1 || lista > 3) //se numero n√£o for entre 1 e 3 pede outro
                         printf("Insira um valor sendo 1, 2 ou 3: ");
 
                 } while (lista < 1 || lista > 3);
@@ -33,7 +33,7 @@ int main(){
                     printf("Esta lista esta vazia!");
                 } else {
                     printf("Lista %d: ", lista);
-                    size_t posicao = 0;
+                    int posicao = 0;
                     while (obtem_valor(&listas[indice], &elemento, posicao) == 1) {
                         printf(" %d ", elemento);
                         posicao++;
