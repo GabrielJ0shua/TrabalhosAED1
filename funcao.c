@@ -97,7 +97,7 @@ int intercalar_listas(Lista *lista_1, Lista *lista_2, Lista *lista_3){
 }
 
 //retorna o elemento na posição
-/*int obtem_valor(Lista *lista, int *elemento, int posicao){
+int obtem_valor(Lista *lista, int *elemento, int posicao){
     if(posicao < 0 || lista_vazia(*lista) == 1)
         return 0;
     int i = 0;
@@ -112,4 +112,3 @@ int intercalar_listas(Lista *lista_1, Lista *lista_2, Lista *lista_3){
     *elemento = aux->informacao;
     return 1;
 }
-*/
