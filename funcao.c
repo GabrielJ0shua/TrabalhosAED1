@@ -16,7 +16,7 @@ int lista_vazia(Lista lista){
         return 0; //lista nao vazia
 }
 
-//vai inserir o elemento ordenado, se der 1 foi inserido, se der 0 não foi
+//vai inserir o elemento ordenado, se der 1 foi inserido, se der 0 nÃ£o foi
 int insere_ord(Lista *lista, int elemento){
     Lista N = (Lista) malloc(sizeof(struct no));
     if(N == NULL)
@@ -49,7 +49,7 @@ int esvaziar_lista(Lista *lista){
     return 1;
 }
 
-//vai retornar por referência o maior valor na lista
+//vai retornar por referÃªncia o maior valor na lista
 int maior_valor(Lista *lista, int *elemento){
     if (lista_vazia(*lista) == 1)
         return 0;
@@ -96,8 +96,8 @@ int intercalar_listas(Lista *lista_1, Lista *lista_2, Lista *lista_3){
     return 1;
 }
 
-//retorna o elemento na posição
-int obtem_valor(Lista *lista, int *elemento, int posicao){
+//retorna o elemento na posiÃ§Ã£o
+/*int obtem_valor(Lista *lista, int *elemento, int posicao){
     if(posicao < 0 || lista_vazia(*lista) == 1)
         return 0;
     int i = 0;
@@ -112,3 +112,4 @@ int obtem_valor(Lista *lista, int *elemento, int posicao){
     *elemento = aux->informacao;
     return 1;
 }
+*/
