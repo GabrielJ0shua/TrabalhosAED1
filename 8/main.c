@@ -22,10 +22,10 @@ int main(void)
             //Inserindo o valor e verificando se deu certo
             case(2):
                 printf("\nValor do termo Ak: ");
-                scanf("%d",equacao.aux);
+                scanf("%d",equacao.An);
                 printf("\nValor do termo K: ");
-                scanf("%d",equacao.aux1);
-                //i = inserir(l,equacao);
+                scanf("%d",equacao.Xn);
+                //i = inserirOrdenado(l,equacao);
                 if (i == 1)
                 {
                     printf("\nPronto");
