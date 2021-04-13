@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1618162157 source:d:\c proj\encadeamento_ciclico\ciclico.c
+	"ciclico.h"
+
+1618162114 d:\c proj\encadeamento_ciclico\ciclico.h
+	<stdlib.h>
+	<stdio.h>
+
+1618161014 source:d:\c proj\encadeamento_ciclico\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ciclico.h"
+
