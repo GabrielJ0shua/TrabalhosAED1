@@ -11,5 +11,16 @@ Soldado iniciaLista(void){
     return NULL;
 }
 void liberaLista(Soldado l){
-
+}
+int inserir(Soldado l, char* nome_do_soldado){
+    return 1;
+}
+int removeDoInicio(Soldado l, char* nome_do_soldado){
+    return 1;
+}
+int removeAleatorio(Soldado l, char* nome_do_soldado){
+    return 1;
+}
+int removeComPosicao(Soldado l,int i, char* nome_do_soldado){
+    return 1;
 }

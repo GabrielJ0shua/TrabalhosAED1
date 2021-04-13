@@ -18,7 +18,7 @@ int main(void){
                     setbuf(stdin,NULL);
                     gets(nome_do_soldado);
                     setbuf(stdin,NULL);
-                    //inserir(l,nome_do_soldado);
+                    inserir(l,nome_do_soldado);
                 }
             break;
 
@@ -27,12 +27,32 @@ int main(void){
                 scanf("%d",&opc1);
                 switch(opc1){
                     case(1):
+                        opc = removeDoInicio(l,nome_do_soldado);
+                        if (opc == 0){
+                            printf("\nAlgo deu errado...");
+                            break;
+                        }
+                        printf("\n %s ",nome_do_soldado);
                     break;
 
                     case(2):
+                        opc = removeAleatorio(l,nome_do_soldado);
+                        if (opc == 0){
+                            printf("\nAlgo deu errado...");
+                            break;
+                        }
+                        printf("\n %s ",nome_do_soldado);
                     break;
 
                     case(3):
+                        printf("\nDigite a posiçao: ");       
+                        scanf("%d",&i);
+                        opc = removeComPosicao(l,i,nome_do_soldado);
+                        if (opc == 0){
+                            printf("\nAlgo deu errado...");
+                            break;
+                        }
+                        printf("\n %s ",nome_do_soldado);
                     break;
 
                     default:
@@ -42,7 +62,7 @@ int main(void){
             break;
 
             case(3):
-                //libera_lista(l);
+                liberaLista(l);
                 return 0;
             break;
             default:
