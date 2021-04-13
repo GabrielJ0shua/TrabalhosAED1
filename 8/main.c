@@ -7,7 +7,7 @@ int main(void)
     int opc,i,qnt = 0;
     float x;
     Termo equacao;
-    comple l;
+    Funcao *l;
     //Menu
     do
     {
@@ -22,10 +22,10 @@ int main(void)
             //Inserindo o valor e verificando se deu certo
             case(2):
                 printf("\nValor do termo Ak: ");
-                scanf("%f",equacao.aux);
+                scanf("%d",equacao.aux);
                 printf("\nValor do termo K: ");
-                scanf("%f",equacao.aux1);
-                i = inserir(l,equacao);
+                scanf("%d",equacao.aux1);
+                //i = inserir(l,equacao);
                 if (i == 1)
                 {
                     printf("\nPronto");
@@ -34,18 +34,18 @@ int main(void)
                 else printf("\nNão Inserido.");                
             break;
             //verificando se tem valores antes de imprimir e imprimir
-            case(3):
+            case(3):/*
                 for(i = 0; i <qnt;i++){
                     if (pegaValores(l,&equacao) == 0){
                         printf("\nNão foi possível...");
                         break;
                     }
                     printf(" %.2fX^%.2f ",equacao.aux,equacao.aux1);
-                }
+                }*/
             break;
             //Verificando se o valor existe antes de deduzir do auxiliar qnt para não perder quantos elementos tem
             case(4):
-                i = removeElemento(l,x);
+                //i = removeElemento(l,x);
                 if (i == 1)
                 {
                     printf("\nPronto");
@@ -55,14 +55,14 @@ int main(void)
             break;
             //Limpa a equação por completo mas não libera a lista
             case(5):
-               limpaEquacao(l);
+               //limpaEquacao(l);
                qnt = 0;
             break;
             //Calcula toda a função se ela existir
             case (6):
                 printf("\nValor do termo X: ");
                 scanf("%f",x);
-                i = calculoPolinomio(l,&x);
+                //i = calculoPolinomio(l,&x);
                 if (i == 1)
                 {
                     printf("\nPronto");

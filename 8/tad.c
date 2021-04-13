@@ -1,31 +1,62 @@
 #include "tad.h"
 #include <stdlib.h>
-
+// lista duplamente encadeada por conta do percorrimento. 
 struct equacaoCompleta{
     Termo polinomio;
-    comple proxNo;
+    Funcao proxNo;
+    Funcao antNo;
 };
 
-comple criaLista(void){
-    comple l = (comple) malloc(sizeof(struct equacaoCompleta));
-    if (l == NULL) return 0;
-    else return l;
+Funcao* criaLista(void){
+    Funcao *l = (Funcao*) malloc(sizeof(Funcao));
+    if (l != NULL) *l = NULL;
+    return l;
 }
-int inserir(comple l,Termo equacao){
-return 1;
-}
-int pegaValores(comple l,Termo *equacao){
-return 1;
-}
-int removeElemento(comple l,float x){
-return 1;
-}
-void limpaEquacao(comple l){
 
+//usuario não precisa dessa função
+int listaVazia(Funcao l){
+    return 1;
 }
-int calculoPolinomio(comple l,float* x){
+//usuario não precisa dessa função
+int tamanhoDalista(Funcao l){
+    return 1;
+}
+
+int inserir(Funcao l,Termo equacao){
+    return 1;    
+}
+
+int pegaValores(Funcao l,Termo *equacao){
 return 1;
 }
-void libera(comple l){
-    free(l);
+
+int removeElemento(Funcao l,float x){
+return 1;
+}
+
+void limpaEquacao(Funcao l){
+    if(l != NULL){
+        Funcao aux;
+        while (l != NULL){
+            aux = l;
+            l = l->proxNo;
+            free(aux);
+        }
+    }
+}
+
+int calculoPolinomio(Funcao l,float* x){
+return 1;
+}
+
+void libera(Funcao *l){
+    if(*l != NULL){
+        Funcao aux;
+        while (*l != NULL){
+            aux = *l;
+            *l = *l;
+            free(aux);
+        }
+        free(l);
+    }
 }
