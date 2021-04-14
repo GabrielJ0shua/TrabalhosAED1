@@ -5,7 +5,7 @@ int main(void)
 {
     //variáveis auxiliares e lista apontando para NULL.
     int opc,i,qnt = 0;
-    float x;
+    float x,f;
     Termo equacao;
     Funcao *l;
     //Menu
@@ -16,56 +16,55 @@ int main(void)
         switch(opc){
             //Iniciando a lista
             case(1):
-            l = criaLista();
-            printf("\nPronto");   
+                l = criaLista();
+                printf("\nPronto");   
             break;
             //Inserindo o valor e verificando se deu certo
             case(2):
                 printf("\nValor do termo Ak: ");
-                scanf("%d",equacao.An);
+                setbuf(stdin,NULL);
+                scanf("%d",&equacao.An);
                 printf("\nValor do termo K: ");
-                scanf("%d",equacao.Xn);
-                //i = inserirOrdenado(l,equacao);
-                if (i == 1)
-                {
-                    printf("\nPronto");
-                    qnt++;
-                }
+                setbuf(stdin,NULL);
+                scanf("%d",&equacao.Xn);
+                i = inserirOrdenado(l,equacao);
+                if (i == 1) printf("\nPronto");
                 else printf("\nNão Inserido.");                
             break;
             //verificando se tem valores antes de imprimir e imprimir
-            case(3):/*
-                for(i = 0; i <qnt;i++){
-                    if (pegaValores(l,&equacao) == 0){
+            case(3):
+                qnt = tamanhoDalista(l);
+                printf("\n");
+                
+                for(i = qnt; i > 0;i++){
+                    if (pegaValores(l,&equacao,i) == 0){
                         printf("\nNão foi possível...");
                         break;
                     }
-                    printf(" %.2fX^%.2f ",equacao.aux,equacao.aux1);
-                }*/
+                    printf(" %dX^%d ",equacao.An,equacao.Xn);
+                }
             break;
             //Verificando se o valor existe antes de deduzir do auxiliar qnt para não perder quantos elementos tem
             case(4):
-                //i = removeElemento(l,x);
-                if (i == 1)
-                {
-                    printf("\nPronto");
-                    qnt--;
-                }
+                printf("\nValor do termo K que deseja apagar: ");
+                scanf("%d",&equacao.Xn);
+                i = removeElemento(l,equacao.Xn);
+                if (i == 1) printf("\nPronto");
                 else printf("\nNão Removido.");
             break;
             //Limpa a equação por completo mas não libera a lista
             case(5):
-               //limpaEquacao(l);
-               qnt = 0;
+               limpaEquacao(l);
+               printf("\nPronto");
             break;
             //Calcula toda a função se ela existir
             case (6):
                 printf("\nValor do termo X: ");
-                scanf("%f",x);
-                //i = calculoPolinomio(l,&x);
+                scanf("%f",&x);
+                i = calculoPolinomio(l,&x,&f);
                 if (i == 1)
                 {
-                    printf("\nPronto");
+                    printf("\n %.2f",f);
                     qnt--;
                 }
                 else printf("\nNão calculado.");
