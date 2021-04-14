@@ -54,7 +54,14 @@ int insere_inicio(Lista *lst, char elem)
 
 int tamanho_lista(Lista * lst)
 {
-    return 1;
+    if (lista_vazia(*lst)==1)
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
 }
 
 int remove_final(Lista *lst, char *elem)
