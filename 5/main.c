@@ -11,8 +11,8 @@ int main()
     Lista lst;
     lst = cria_lista();
     char input;
-    int posicao;
-    int escolha = 0
+    int posicao, tam;
+    int escolha = 0;
     while(escolha!=6)
     {
         printf("Manipulador de lista de strings \n");
@@ -40,7 +40,7 @@ int main()
                 if(lst == NULL)
                     printf("Lista nao existe \n");
                 else
-                    apaga_lista(lst);
+                    apaga_lista(&lst);
             break;
             case 3:
                 printf("Digite o caractere a ser inserido: \n");
@@ -51,44 +51,44 @@ int main()
             case 4:
                  printf("Digite o elemento a ser inserido \n");
                  scanf("%c", &input);
-                 if (insere_final(&lst, input);)
+                 if (insere_final(&lst, input)==0)
                  {
                      printf("Falha \n");
                  }
             break;
 
             case 5:
-                 if (remove_inicio(lst, &input)==0)
+                 if (remove_inicio(&lst, &input)==0)
                  {
                      printf("Falha \n");
                  }
                  else
-                    printf("Elemento %c removido \n", imput);
+                    printf("Elemento %c removido \n", input);
             break;
 
             case 6:
                 if(lista_vazia(lst)!=1)
                 {
-                    imprime_lista();
+                    imprime_lista(lst);
                 }
                 else
                     printf("Falha, lista vazia \n");
             break;
 
             case 7:
-                int tam = tamanho_lista(Lista * lst);
+                tam = tamanho_lista(&lst);
                 printf("%d", tam);
             break;
             case 8:
-                if (remove_final(lst, &input)==0)
+                if (remove_final(&lst, &input)==0)
                  {
                      printf("Falha \n");
                  }
                  else
-                    printf("Elemento %c removido \n", imput);
+                    printf("Elemento %c removido \n", input);
             break;
             case 9:
-                scanf("%d", posicao);
+                scanf("%d", &posicao);
                 tester = remove_pos(&lst, posicao);
                 if (tester==0)
                  {
@@ -99,6 +99,7 @@ int main()
             break;
 
             case 10:
+                apaga_lista(&lst);
                 break;
             default:
                 printf("Escolha invalida");

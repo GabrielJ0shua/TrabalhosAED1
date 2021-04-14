@@ -4,6 +4,8 @@
 #include <stdio.h>
 typedef struct no * Lista;
 Lista cria_lista();
+void apaga_lista(Lista *lst);
+int lista_vazia (Lista lst);
 int remove_inicio(Lista *lst, char *elem);
 int insere_final(Lista *lst, char elem);
 int insere_inicio(Lista *lst, char elem);

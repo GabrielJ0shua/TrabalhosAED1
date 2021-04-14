@@ -66,10 +66,27 @@ int tamanho_lista(Lista * lst)
 
 int remove_final(Lista *lst, char *elem)
 {
+    // Trata lista vazia
+    if (lista_vazia(*lst) == 1)
+        return 0;
+    Lista aux = (*lst)->prox; // Faz aux apontar para 1o nó
+    while (aux->prox != *lst)
+    {
+        aux = aux->prox;
+    }
+    *elem = (*lst)->info;
+    aux->prox = (*lst)->prox;
+    free(*lst);
+    *lst = aux;
     return 1;
 }
 
 char remove_pos(Lista *lst, int pos)
 {
     return 1;
+}
+
+void apaga_lista(Lista *lst)
+{
+
 }
