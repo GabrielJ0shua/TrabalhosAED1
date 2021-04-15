@@ -1,8 +1,10 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "function.h"
 
 CHAR p, p2, p3;
 int op = 0, ini = 0, tam;
+int iniP2 = 0;
 char elem;
 
 void menu(){
@@ -45,7 +47,7 @@ int main(){
             continue;
         }
 
-        if(ini == 0 && op != 1){ // NAO DEIXA FAZER ALGO COM A LISTA 1 SE ELA NAO EXISTIR
+        if(ini == 0 && op != 1 && op != 10){ // NAO DEIXA FAZER ALGO COM A LISTA 1 SE ELA NAO EXISTIR
             printf("\n### Lista NAO Inicializada ###\n\n");
             menu();
             continue;
@@ -149,9 +151,14 @@ int main(){
             menu();
         }
 
-        if(op == 9){
+        if(op == 9){//INTERCALAR
+            if(iniP2 == 1){
+                free(p2); p2 = NULL;
+                free(p3); p3 = NULL;
+            }
             p2 = cria_lista();//INICIALIZA LISTA P2
             p3 = cria_lista();//INICIALIZA LISTA P3
+            iniP2 = 1;
 
             printf("\n### INSIRA ELEMENTOS NA LISTA 2 ###\n\n");
             printf("### Caso NAO queira Inserir Mais Elementos, Tecle SPACE e de ENTER ###\n");

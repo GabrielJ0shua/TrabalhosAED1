@@ -35,7 +35,7 @@ int lista_cheia(CHAR p){
 
 }
 
-int insere_ord(CHAR p, char N){
+int insere_ord(CHAR p, char N){//INSERIR EM ORDEM DECRESCENTE
 
     if(p == NULL || lista_cheia(p) == 1) return 0;
 
@@ -71,11 +71,11 @@ int remove_elem(CHAR p, char N){
 //SE NAO FOR O ULTIMO, ELE PROCURA ATE ACHAR OU NAO O ELEMENTO
     else{
         int i;
-        for(i = 0; i < p->Fim; i++){
+        for(i = 0; i < p->Fim-1; i++){
             if(p->elem[i] == N) break; //SE ACHOU, ENTAO PAUSA E IREMOS REMOVE-LO ADIANTE
         }
 
-        if(i == p->Fim) return 0; //SE NAO ACHOU, RETORNA ZERO
+        if(i == p->Fim-1) return 0; //SE NAO ACHOU, RETORNA ZERO
 
         else{ //REMOVER ELEMENTO ENCONTRADO
             for(i += 1; i < p->Fim; i++){ //COMECO NA POSICAO DO ELEMENTO + 1
@@ -90,7 +90,7 @@ int remove_elem(CHAR p, char N){
 
 int get_pos(CHAR p, int pos, char *elemento){
 
-    if(p == NULL || lista_vazia(p) == 1 || p->Fim <= pos) return 0;
+    if(p == NULL || lista_vazia(p) == 1 || pos >= p->Fim) return 0;
 
     //JA FACO A VERIFICACAO ANTES SE A POSICAO SOLICITADA EH VALIDA
     //SE FOR, SO PEGO O ELEMENTO DAQUELA POSICAO E PASSO POR REFERENCIA
@@ -117,12 +117,15 @@ int remove_pares(CHAR p){
 
     if(p == NULL || lista_vazia(p) == 1) return 0;
 
-    int i;
+    int i, j;
     for(i = 0; i < p->Fim; i++){
         if(p->elem[i] % 2 == 0){
-            remove_elem(p, p->elem[i]);
-            i--; //COMANDO NECESSARIO, JA QUE IREI REMOVER O ELEMENTO SE FOR PAR, E O PROXIMO Q IREI VERIFICAR
-        }       //IRA VIR PARA ESSA POSICAO. SEM ESSE COMANDO, EU NAO FARIA A VERIFICACAO DESSE PROXIMO ELEMENTO
+            for(j = i+1; j < p->Fim; j++){
+                p->elem[j-1] = p->elem[j];
+            }
+            p->Fim--;
+            i--;
+        }
     }
 
     return 1;
@@ -164,17 +167,18 @@ int intercala_listas(CHAR p, CHAR p2, CHAR p3){
 
     if(tamP + tamP2 > 20) return 0;
 
-    int i;
-    for(i = 0; i < p->Fim; i++){//COMECO INSERINDO OS ELEMENTOS DA LISTA P EM P3
-        insere_ord(p3,p->elem[i]);
+    int i = 0;//contador
+    while(1){
+        if(p->Fim > i && p2->Fim > i){
+            insere_ord(p3, p->elem[i]);
+            insere_ord(p3, p2->elem[i]);
+        }
+        else if(p->Fim > i && p2->Fim <= i) insere_ord(p3, p->elem[i]);
+        else if(p->Fim <= i && p2->Fim > i) insere_ord(p3, p2->elem[i]);
+        else break;
+
+        i++;
     }
-    for(i = 0; i < p2->Fim; i++){//DEPOIS INSIRO OS ELEMENTOS DA LISTA P2 EM P3
-        insere_ord(p3,p2->elem[i]);
-    }
-    /* OS ELEMENTOS DA LISTA 1 SAO INSERIDOS ORDENADOS EM ORDEM DESCRECENTE, JÁ QUE A LISTA
-    JÁ ESTÁ ORDENADA ASSIM, E TBM ESTÁ PASSANDO PELA FUNCAO INSERE_ORD!
-    OS ELEMENTOS DA LISTA 2 TBM SAO INSERIDOS EM ORDEM DESCRESCENTE, MESMO COM OS ELEMENTOS
-    DA LISTA 1 JÁ INSERIDOS. NOTE QUE TBM SAO INSERIDOS PELA FUNCAO INSERE_ORD */
 
     return 1;
 
