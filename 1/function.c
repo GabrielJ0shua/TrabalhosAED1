@@ -162,18 +162,14 @@ int concatena_listas(Reais p, Reais p2, Reais p3){
 
     if(p == NULL || p2 == NULL || p3 == NULL) return 0;
 
-    float tamP, tamP2;
-    tamanho_lista(p, &tamP);//A SOMA DO TAMANHO DAS 2 LISTAS PRECISA SER NO MAXIMO 20 ELEMENTOS
-    tamanho_lista(p2, &tamP2);//JA QUE O LIMITE SAO 20 ELEMENTOS
-
-    if(tamP + tamP2 > 20) return 0;
-
     int i;
     for(i = 0; i < p->Fim; i++){//COMECO INSERINDO OS ELEMENTOS DA LISTA P EM P3
+        if(p3->Fim == 20) break;
         p3->num[p3->Fim] = p->num[i];
         p3->Fim++;
     }
     for(i = 0; i < p2->Fim; i++){//DEPOIS INSIRO OS ELEMENTOS DA LISTA P2 EM P3
+        if(p3->Fim == 20) break;
         p3->num[p3->Fim] = p2->num[i];
         p3->Fim++;
     }
