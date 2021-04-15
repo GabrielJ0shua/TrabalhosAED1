@@ -161,14 +161,9 @@ int intercala_listas(CHAR p, CHAR p2, CHAR p3){
 
     if(p == NULL || p2 == NULL || p3 == NULL) return 0;
 
-    int tamP, tamP2;
-    tamanho_lista(p, &tamP);//A SOMA DO TAMANHO DAS 2 LISTAS PRECISA SER NO MAXIMO 20 ELEMENTOS
-    tamanho_lista(p2, &tamP2);//JA QUE O LIMITE SAO 20 ELEMENTOS
-
-    if(tamP + tamP2 > 20) return 0;
-
     int i = 0;//contador
     while(1){
+        if(p3->Fim == 20) break;
         if(p->Fim > i && p2->Fim > i){
             insere_ord(p3, p->elem[i]);
             insere_ord(p3, p2->elem[i]);
