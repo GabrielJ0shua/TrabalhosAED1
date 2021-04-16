@@ -116,7 +116,7 @@ int main(){
                 if(intercalar_listas(&listas[0], &listas[1], &listas[2]) == 0)
                     printf("Erro ao intercalar!\n");
                 else
-                    printf("Listas intercaladas e o resultado obtido asta armazenado na lista 3.\n");
+                    printf("Listas intercaladas e o resultado obtido esta armazenado na lista 3.\n");
                 break;
 
 
