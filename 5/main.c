@@ -40,7 +40,7 @@ int main()
                 if(lst == NULL)
                     printf("Lista nao existe \n");
                 else
-                    apaga_lista(&lst);
+                        apaga_lista(&lst);
             break;
             case 3:
                 printf("Digite o caractere a ser inserido: \n");
@@ -92,7 +92,7 @@ int main()
                 tester = remove_pos(&lst, posicao);
                 if (tester==0)
                  {
-                     printf("Falha, o encontrar a posicao \n");
+                     printf("Falha ao encontrar a posicao \n");
                  }
                  else
                     printf("Elemento %c removido \n", tester);

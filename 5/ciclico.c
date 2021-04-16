@@ -49,18 +49,38 @@ int insere_final(Lista *lst, char elem)
 
 int insere_inicio(Lista *lst, char elem)
 {
+    Lista N = (Lista) malloc(sizeof(struct no));
+    if (N == NULL) { return 0; } // Falha: nó não alocado
+    N->info = elem; // Insere o conteúdo (valor do elem)
+    if (lista_vazia(*lst) == 1)
+    {
+        N->prox = N; // Faz o novo nó apontar para ele mesmo
+        *lst = N; // Faz a lista apontar para o novo nó (primeiro nó)
+    }
+    else
+    {
+        N->prox = ((*lst)->prox) // Faz o novo nó apontar para o antigo 1o nó
+        (*lst)->prox= N; // Faz o último nó apontar para o novo nó
+    }
     return 1;
 }
 
 int tamanho_lista(Lista * lst)
 {
+    int i = 1;//Se a lista não é vazia, seu tamanho é pelo menos 1
     if (lista_vazia(*lst)==1)
     {
         return 0;
     }
     else
     {
-        return 1;
+        Lista aux = (*lst)->prox; // Faz aux apontar para 1o nó
+        while (aux->prox != *lst)//ENQUANTO o próximo elemento não for  último
+        {
+            aux = aux->prox; //Percorre a lista
+            i++;//Aumenta o contador
+        }
+        return i;//Retorna o tamanho
     }
 }
 
@@ -69,16 +89,24 @@ int remove_final(Lista *lst, char *elem)
     // Trata lista vazia
     if (lista_vazia(*lst) == 1)
         return 0;
-    Lista aux = (*lst)->prox; // Faz aux apontar para 1o nó
-    while (aux->prox != *lst)
+    if ((*lst)->prox == *lst)//Trata lista com um elemento
     {
-        aux = aux->prox;
+        free(*lst);
     }
-    *elem = (*lst)->info;
-    aux->prox = (*lst)->prox;
-    free(*lst);
-    *lst = aux;
-    return 1;
+    else
+    {
+        Lista aux = (*lst)->prox; // Faz aux apontar para 1o nó
+        while (aux->prox != *lst)
+        {
+            aux = aux->prox; //Percorre a lista até encontrar o penúltimo elemento
+        }
+        *elem = (*lst)->info; //Passa o valor por referência
+        aux->prox = (*lst)->prox; //Aponta o penúltimo para o primeiro
+        free(*lst); //libera o último
+        *lst = aux;//Aponta a lista para o novo último
+    }
+
+    return 1;//Sucesso
 }
 
 char remove_pos(Lista *lst, int pos)
