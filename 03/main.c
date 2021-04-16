@@ -7,7 +7,7 @@ int main(){
     Lista listas[3];
     listas[0] = criar_lista(); //lista 1
     listas[1] = criar_lista();
-    listas[2] = criar_lista(); // lista que vai receber a intercalaÁ„o da lista 1 e 2
+    listas[2] = criar_lista(); // lista que vai receber a intercala√ß√£o da lista 1 e 2
     while (sair != 1) {
         int x = 0;
         printf("\n[1] Imprimir lista.");
@@ -27,7 +27,7 @@ int main(){
                 printf("Deseja imprimir lista 1, 2 ou 3?: ");
                 do {
                     scanf("%d", &lista);
-                    if (lista < 1 || lista > 3) //se numero n„o for entre 1 e 3 pede outro
+                    if (lista < 1 || lista > 3) //se numero n√£o for entre 1 e 3 pede outro
                         printf("Insira um valor sendo 1, 2 ou 3: ");
 
                 } while (lista < 1 || lista > 3);
@@ -37,7 +37,7 @@ int main(){
                 } else {
                     printf("Lista %d: \n", lista);
                     int posicao = 0;
-                    while (obtem_valor(&listas[indice], &elemento, posicao) == 1) { //vai obter o valor do elemento naquela posiÁ„o da lista
+                    while (obtem_valor(&listas[indice], &elemento, posicao) == 1) { //vai obter o valor do elemento naquela posi√ß√£o da lista
                         printf("%d\n", elemento);
                         posicao++; //percorre
                     }
@@ -86,7 +86,7 @@ int main(){
                         printf("Insira um valor sendo 1, 2 ou 3:\n");
 
                 } while (lista < 1 || lista > 3);
-                indice = lista-1; //recebe um elemento anterior da lista, pra comparar e ver qual È maior
+                indice = lista-1; //recebe um elemento anterior da lista, pra comparar e ver qual √© maior
                 if(maior_valor(&listas[indice], &elemento) == 0) //vai percorrer a lista e comparar c os elementos
                     printf("Erro ao encontrar o elemento digitado!");
                 else
@@ -119,9 +119,8 @@ int main(){
                     printf("Listas intercaladas e o resultado obtido asta armazenado na lista 3.\n");
                 break;
 
-//ARRUMAR ESSE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-            case 7: // imprime que s„o sÛ iguais ou sÛ distintas
+            case 7: // imprime que s√£o s√≥ iguais ou s√≥ distintas
                 tam1 = tamanho_lista(&listas[0]);
                 tam2 = tamanho_lista(&listas[1]);
                     if(listas_iguais(&listas[0], &listas[1], tam1, tam2) == 0)
