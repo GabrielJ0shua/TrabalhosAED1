@@ -1,11 +1,12 @@
 #include "tad.h"
 #include <stdio.h>
+#include <math.h>
 
 int main(void)
 {
     //variáveis auxiliares e lista apontando para NULL.
-    int opc,i,qnt = 0;
-    float x,f;
+    int opc,i,j,qnt = 0;
+    float x;
     Termo equacao;
     Funcao *l;
     //Menu
@@ -59,15 +60,18 @@ int main(void)
             break;
             //Calcula toda a função se ela existir
             case (6):
+                j = 0;
+                qnt = tamanhoDalista(l);
                 printf("\nValor do termo X: ");
                 scanf("%f",&x);
-                i = calculoPolinomio(l,&x,&f);
-                if (i == 1)
-                {
-                    printf("\n %.2f",f);
-                    qnt--;
+                for(i = qnt; i > 0;i++){
+                    if (pegaValores(l,&equacao,i) == 0){
+                        printf("\nNão foi possível...");
+                        break;
+                    }
+                    j += (equacao.An) * (pow(x,(equacao.Xn)));
                 }
-                else printf("\nNão calculado.");
+                printf("\n %d\n",j);
             break;
             //libera a lista por completo e fecha o programa
             case (7):
@@ -80,5 +84,6 @@ int main(void)
             break;
         } 
     }while (1);
+    libera(l);
     return 1; //programa saiu dos casos então é erro, melhor encerrar por aqui
 }
