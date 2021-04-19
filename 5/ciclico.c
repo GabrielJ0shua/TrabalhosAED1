@@ -111,10 +111,37 @@ int remove_final(Lista *lst, char *elem)
 
 char remove_pos(Lista *lst, int pos)
 {
-    return 1;
+    // Trata lista vazia
+    if (lista_vazia(*lst) == 1)
+        return 0;
+    int i = 1;
+    Lista aux = (*lst)->prox
+    while (aux->prox != *lst && i < pos)//ENQUANTO o próximo elemento não for i-ésimo
+        {
+            aux = aux->prox; //Percorre a lista
+            i++;//Aumenta o contador
+        }
+    if (pos==i+1 && aux->prox = *lst)
+        {
+            aux->prox = (*lst)->prox; //Aponta o penúltimo para o primeiro
+            free(*lst); //libera o último
+            *lst = aux;//Aponta a lista para o novo último
+        }
+    else if (aux->prox = *lst)
+        {
+
+        }
 }
 
 void apaga_lista(Lista *lst)
 {
-
+    Lista aux = *lst;
+    while ((*lst)->prox != *lst)//ENQUANTO o próximo elemento não for  último
+        {
+            (*lst) = (*lst)->prox; //Percorre a lista
+            free(aux);//Aumenta o contador
+            aux = *lst;
+        }
+        free(*lst);
+        lst=NULL;
 }

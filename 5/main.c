@@ -13,9 +13,9 @@ int main()
     char input;
     int posicao, tam;
     int escolha = 0;
-    while(escolha!=6)
+    while(escolha!=10)
     {
-        printf("Manipulador de lista de strings \n");
+        printf("Manipulador de lista de chars: \n");
         printf("[1] Criar lista \n");
         printf("[2] Apagar lista \n");
         printf("[3] Inserir no inicio \n");
