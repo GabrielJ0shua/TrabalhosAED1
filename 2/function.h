@@ -11,4 +11,4 @@ int remove_pares(CHAR p);
 int menor_elemento(CHAR p, char *elemento);
 int tamanho_lista(CHAR p, int *tam);
 int intercala_listas(CHAR p, CHAR p2, CHAR p3);
-void libera(CHAR p, CHAR p2, CHAR p3);
+void libera(CHAR p);

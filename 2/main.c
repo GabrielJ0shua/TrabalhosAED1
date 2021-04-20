@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "function.h"
 
 CHAR p, p2, p3;
@@ -153,8 +152,8 @@ int main(){
 
         if(op == 9){//INTERCALAR
             if(iniP2 == 1){
-                free(p2); p2 = NULL;
-                free(p3); p3 = NULL;
+                libera(p2);
+                libera(p3);
             }
             p2 = cria_lista();//INICIALIZA LISTA P2
             p3 = cria_lista();//INICIALIZA LISTA P3
@@ -194,7 +193,9 @@ int main(){
 
     printf("\n### Fim Do Programa ###\n\n");
 
-    libera(p,p2,p3); // IRA DAR FREE NAS LISTAS INICIALIZADAS E APONTAR PARA NULL
+    libera(p);
+    libera(p2); // IRA DAR FREE NAS LISTAS INICIALIZADAS E APONTAR PARA NULL
+    libera(p3);
 
     return 0;
 }

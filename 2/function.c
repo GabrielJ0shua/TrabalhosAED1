@@ -45,9 +45,9 @@ int insere_ord(CHAR p, char N){//INSERIR EM ORDEM DECRESCENTE
         p->Fim++;
         return 1;
     }
-    int i, j;
-    for(i = 0; i < p->Fim; i++){//SE TIVER ELEMENTOS, PROCURA UM ELEMENTO DA LISTA MENOR
-        if(p->elem[i] <= N) break;//PARA PODER INSERIR EM ORDEM DECRESCENTE
+    int i = 0, j;
+    while(p->elem[i] >= N && i < p->Fim){//SE TIVER ELEMENTOS, PROCURA UM ELEMENTO DA LISTA MENOR
+        i++;                             //PARA PODER INSERIR EM ORDEM DECRESCENTE
     }
     for(j = p->Fim; j > i; j--){//MOVENDO TODOS OS ELEMENTOS, PARA PODER INSERIR O NOVO ELEMENTO
         p->elem[j] = p->elem[j-1];
@@ -163,14 +163,14 @@ int intercala_listas(CHAR p, CHAR p2, CHAR p3){
 
     int i = 0;//contador
     while(1){
-        if(p3->Fim == 20) break;
-        if(p->Fim > i && p2->Fim > i){
+        if(p3->Fim == 20) break;//SE ENCHER VAI PARAR
+        if(p->Fim > i && p2->Fim > i){//AS DUAS LISTAS TEM ELEMENTOS PARA INSERIR EM P3
             insere_ord(p3, p->elem[i]);
             insere_ord(p3, p2->elem[i]);
         }
-        else if(p->Fim > i && p2->Fim <= i) insere_ord(p3, p->elem[i]);
-        else if(p->Fim <= i && p2->Fim > i) insere_ord(p3, p2->elem[i]);
-        else break;
+        else if(p->Fim > i && p2->Fim <= i) insere_ord(p3, p->elem[i]);//LISTA 2 NAO TEM MAIS ELEMENTOS, LISTA 1 TEM
+        else if(p->Fim <= i && p2->Fim > i) insere_ord(p3, p2->elem[i]);//LISTA 1 NAO TEM MAIS ELEMENTOS, LISTA 2 TEM
+        else break;//NENHUMA LISTA TEM ELEMENTOS PARA INSERIR EM P3
 
         i++;
     }
@@ -179,12 +179,11 @@ int intercala_listas(CHAR p, CHAR p2, CHAR p3){
 
 }
 
-void libera(CHAR p, CHAR p2, CHAR p3){
+void libera(CHAR p){
 
-    if(p != NULL){free(p);p = NULL;}
-    if(p2 != NULL){free(p2);p2 = NULL;}
-    if(p3 != NULL){free(p3);p3 = NULL;}
-
-    //LIBERO AS 3 LISTAS E APONTO PARA NULL
+    if(p != NULL){
+        free(p);
+        p = NULL;
+    }
 
 }
