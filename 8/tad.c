@@ -1,6 +1,6 @@
 #include "tad.h"
 #include <stdlib.h>
-// lista duplamente encadeada por conta do percorrimento. 
+// lista duplamente encadeada por conta do deslocamento de elementos e inserção. 
 struct equacaoCompleta{
     Termo polinomio;
     Funcao proxNo;
