@@ -1,12 +1,11 @@
 # depslib dependency file v1.0
-1618360079 source:c:\users\art.frc\desktop\aed1\trab_aed1\1\main.c
+1618876335 source:c:\users\art.frc\desktop\aed1\trab_aed1\1\main.c
 	<stdio.h>
-	<stdlib.h>
 	"function.h"
 
-1618063969 c:\users\art.frc\desktop\aed1\trab_aed1\1\function.h
+1618876335 c:\users\art.frc\desktop\aed1\trab_aed1\1\function.h
 
-1618516076 source:c:\users\art.frc\desktop\aed1\trab_aed1\1\function.c
+1618876335 source:c:\users\art.frc\desktop\aed1\trab_aed1\1\function.c
 	<stdio.h>
 	<stdlib.h>
 	"function.h"

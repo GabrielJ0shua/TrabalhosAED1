@@ -12,4 +12,4 @@ int maior_elemento(Reais p, float *elem);
 int tamanho_lista(Reais p, float *tam);
 int lista_invertida(Reais p, Reais p2);
 int concatena_listas(Reais p, Reais p2, Reais p3);
-void libera(Reais p, Reais p2, Reais p3);
+void libera(Reais p);

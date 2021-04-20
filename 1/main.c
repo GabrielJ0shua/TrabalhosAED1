@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "function.h"
 
 Reais p, p2, p3;
@@ -70,13 +69,12 @@ int main(){
 
         if(op == 2){
             if(iniP2 == 1){//SE A LISTA INVERTIDA TIVER SIDO CRIADA E EU RESOLVO INSERIR ELEMENTO NA LISTA 1
-                free(p2);   //ENTAO EU LIBERO A LISTA 2 QUE FOI CRIADA PARA QUANDO FOR GERAR ELA NOVAMENTE
-                p2 = NULL;  //A LISTA ANTERIOR NAO FICAR OCUPANDO ESPACO ATOA
+                libera(p2);   //ENTAO EU LIBERO A LISTA 2 QUE FOI CRIADA PARA QUANDO FOR GERAR ELA NOVAMENTE
+                              //A LISTA ANTERIOR NAO FICAR OCUPANDO ESPACO ATOA
                 iniP2 = 0;
             }
             if(iniP3 == 1){//SEGUE O MESMO RACIOCINIO PARA LISTA 3, CASO ELA TENHA SIDO CRIADA E EU RESOLVO
-                free(p3);   //INSERIR UM NOVO ELEMENTO NA LISTA 1 (LISTA 1 SERIA MEU p)
-                p3 = NULL;
+                libera(p3);   //INSERIR UM NOVO ELEMENTO NA LISTA 1 (LISTA 1 SERIA MEU p)
                 iniP3 = 0;
             }
             printf("\n### A Lista possui os seguintes elementos: ###\n\n");
@@ -191,7 +189,9 @@ int main(){
 
     printf("\n### Fim Do Programa ###\n\n");
 
-    libera(p,p2,p3); // IRA DAR FREE NAS LISTAS INICIALIZADAS E APONTAR PARA NULL
+    libera(p); // IRA DAR FREE NAS LISTAS INICIALIZADAS E APONTAR PARA NULL
+    libera(p2);
+    libera(p3);
 
     return 0;
 }

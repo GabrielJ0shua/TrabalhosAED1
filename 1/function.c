@@ -178,12 +178,11 @@ int concatena_listas(Reais p, Reais p2, Reais p3){
 
 }
 
-void libera(Reais p, Reais p2, Reais p3){
+void libera(Reais p){
 
-    if(p != NULL){free(p);p = NULL;}
-    if(p2 != NULL){free(p2);p2 = NULL;}
-    if(p3 != NULL){free(p3);p3 = NULL;}
-
-    //LIBERO AS 3 LISTAS E APONTO PARA NULL
+    if(p != NULL){
+        free(p);
+        p = NULL;
+    }
 
 }
