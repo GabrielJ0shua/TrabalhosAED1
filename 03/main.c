@@ -7,7 +7,7 @@ int main(){
     Lista listas[3];
     listas[0] = criar_lista(); //lista 1
     listas[1] = criar_lista();
-    listas[2] = criar_lista(); // lista que vai receber a intercalaÃ§Ã£o da lista 1 e 2
+    listas[2] = criar_lista(); // lista que vai receber a intercalação da lista 1 e 2
     while (sair != 1) {
         int x = 0;
         printf("\n[1] Imprimir lista.");
@@ -27,7 +27,7 @@ int main(){
                 printf("Deseja imprimir lista 1, 2 ou 3?: ");
                 do {
                     scanf("%d", &lista);
-                    if (lista < 1 || lista > 3) //se numero nÃ£o for entre 1 e 3 pede outro
+                    if (lista < 1 || lista > 3) //se numero não for entre 1 e 3 pede outro
                         printf("Insira um valor sendo 1, 2 ou 3: ");
 
                 } while (lista < 1 || lista > 3);
@@ -35,9 +35,9 @@ int main(){
                 if (lista_vazia(listas[indice]) == 1) { //verifica se a lista naquele indice for vazia
                     printf("Esta lista esta vazia!\n");
                 } else {
-                    printf("Lista %d: \n", lista);
-                    int posicao = 0;
-                    while (obtem_valor(&listas[indice], &elemento, posicao) == 1) { //vai obter o valor do elemento naquela posiÃ§Ã£o da lista
+                    printf("Lista %d: \n", lista); //imprime a lista
+                    int posicao = 0; // inicializa a posição c 0
+                    while (obtem_valor(&listas[indice], &elemento, posicao) == 1) { //vai obter o valor do elemento naquela posição da lista
                         printf("%d\n", elemento);
                         posicao++; //percorre
                     }
@@ -55,7 +55,7 @@ int main(){
                 indice = lista-1; //vai percorrendo pra inserir
                 printf("Digite o elemento a ser inserido:\n ");
                 scanf("%d", &elemento);
-                if(insere_ord(&listas[indice], elemento) == 0)
+                if(insere_ord(&listas[indice], elemento) == 0) //se o elemento e a posição da lista for 0
                     printf("Erro ao inserir elemento!\n");
                 else
                     printf("Elemento inserido!\n");
@@ -86,7 +86,7 @@ int main(){
                         printf("Insira um valor sendo 1, 2 ou 3:\n");
 
                 } while (lista < 1 || lista > 3);
-                indice = lista-1; //recebe um elemento anterior da lista, pra comparar e ver qual Ã© maior
+                indice = lista-1; //recebe um elemento anterior da lista, pra comparar e ver qual é maior
                 if(maior_valor(&listas[indice], &elemento) == 0) //vai percorrer a lista e comparar c os elementos
                     printf("Erro ao encontrar o elemento digitado!");
                 else
@@ -116,11 +116,12 @@ int main(){
                 if(intercalar_listas(&listas[0], &listas[1], &listas[2]) == 0)
                     printf("Erro ao intercalar!\n");
                 else
-                    printf("Listas intercaladas e o resultado obtido esta armazenado na lista 3.\n");
+                    printf("Listas intercaladas e o resultado obtido asta armazenado na lista 3.\n");
                 break;
 
+//ARRUMAR ESSE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-            case 7: // imprime que sÃ£o sÃ³ iguais ou sÃ³ distintas
+            case 7: // imprime que são só iguais ou só distintas
                 tam1 = tamanho_lista(&listas[0]);
                 tam2 = tamanho_lista(&listas[1]);
                     if(listas_iguais(&listas[0], &listas[1], tam1, tam2) == 0)

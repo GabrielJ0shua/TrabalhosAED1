@@ -116,43 +116,6 @@ int obtem_valor(Lista *lista, int *elemento, int posicao){
     return 1;
 }
 
-//compara as listas pra ver se são iguais
-// ESSA VERSÃO IMPRIME QUE É IGUAL QUANDO NÃO É E VICE VERSA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-/*int listas_iguais(Lista *lista_1, Lista *lista_2){
-    if (lista_vazia(*lista_1) == 1 || lista_vazia(*lista_2) == 1) //verifica se as listas estão vazias
-        return 0;
-
-    Lista aux_1 = (*lista_1); //auxiliar recebe o ponteiro da lista1
-    Lista aux_2 = (*lista_2); //auxiliar 2 recebe o ponteiro da lista2
-
-    while (((aux_1)->prox != NULL && (aux_2)->prox != NULL) // se os dois auxiliares apontam pro proximo elemento e for diferente de nulo
-    && ((aux_1)->informacao == (aux_2)->informacao)) { // auxiliar vai apontar pro no que tem a informação, e comparar com o auxiliar 2
-        (aux_1) = (aux_1)->prox; // vai receber o elemento que ta armazenado no ponteiro de ponteiro(o ponteiro de aux apontando pro proximo)
-        (aux_2) = (aux_2)->prox;
-    }
-
-    if ((aux_1)->informacao == (aux_2)->informacao && ((aux_1)->prox != NULL && (aux_2)->prox != NULL)) //
-        return 1;
-
-    return 0;
-}
-
-int listas_iguais(Lista *lista_1, Lista *lista_2){ // ESSA VERSÃO NÃO IMPRIME NADA
-    Lista aux_1 = (*lista_1);
-    Lista aux_2 = (*lista_2);
-
-        while(lista_1 != NULL && lista_2 != NULL){
-            if((aux_1)->informacao != (aux_2) ->informacao){
-                return 0;
-            }
-            (aux_1) = (aux_1)->prox;
-            (aux_2) = (aux_2)->prox;
-        }
-        return (aux_1) == NULL && (aux_2) == NULL;
-
-}
-*/
-
 int listas_iguais(Lista *lista_1, Lista *lista_2, int tam1, int tam2){
     Lista aux_1 = (*lista_1); //auxiliar 1 recebe o ponteiro da lista 1
     Lista aux_2 = (*lista_2); //auxiliar 2 recebe o ponteiro da lista 2
