@@ -1,11 +1,11 @@
 #include "tad.h"
 #include <stdio.h>
 #include <string.h>
-
+ 
 int main(void){
     int opc,opc1,i,j,aux2;
-    char nome_do_soldado[20];
-    Soldado l = iniciaLista();
+    dado Soldado;
+    Batalhao* l = iniciaLista();
     do{
         printf("\nEscolha uma opção:\n1 - Inserir o nome dos soldados que estão cercados \n2- Uma das opções para posição inicial da contagem\n3- Sair\n");
         scanf("%d",&opc);
@@ -16,9 +16,9 @@ int main(void){
                 for (j = 0; j < i; j++){
                     printf("\nNome do Soldado %d: ",j+1);
                     setbuf(stdin,NULL);
-                    gets(nome_do_soldado);
+                    gets(Soldado.nome_do_soldado);
                     setbuf(stdin,NULL);
-                    inserir(l,nome_do_soldado);
+                    insereInicio(l,Soldado);
                 }
             break;
 
@@ -27,32 +27,42 @@ int main(void){
                 scanf("%d",&opc1);
                 switch(opc1){
                     case(1):
-                        opc = removeDoInicio(l,nome_do_soldado);
-                        if (opc == 0){
-                            printf("\nAlgo deu errado...");
-                            break;
+                        printf("\nDe quantas em quantas posições será removido os soldados? ");
+                        scanf("%d",&opc);
+                        for(i = tamanhoLista(l); 0 < i; i = tamanhoLista(l)){
+                            j = problemaDeJosephus( l, &Soldado, opc,1);
+                            if(j == 1)  printf("\n %s ",Soldado.nome_do_soldado);
+                            else{
+                                printf("\nOcorreu algum problema...");
+                                break;
+                            }
                         }
-                        printf("\n %s ",nome_do_soldado);
                     break;
 
                     case(2):
-                        opc = removeAleatorio(l,nome_do_soldado);
-                        if (opc == 0){
-                            printf("\nAlgo deu errado...");
-                            break;
+                        for(i = 0; i < j; i++,j = tamanhoLista(l)){
+                            if(problemaDeJosephus( l, &Soldado, 0,2))  printf("\n %s ",Soldado.nome_do_soldado);
+                            else{
+                                printf("\nOcorreu algum problema...");
+                                break;
+                            }
                         }
-                        printf("\n %s ",nome_do_soldado);
                     break;
 
                     case(3):
-                        printf("\nDigite a posiçao: ");       
-                        scanf("%d",&i);
-                        opc = removeComPosicao(l,i,nome_do_soldado);
-                        if (opc == 0){
-                            printf("\nAlgo deu errado...");
-                            break;
+                        printf("\nNome do Soldado %d: ",j+1);
+                        setbuf(stdin,NULL);
+                        gets(Soldado.nome_do_soldado);
+                        setbuf(stdin,NULL);
+                        printf("\nDe quantas em quantas posições será removido os soldados? ");
+                        scanf("%d",&opc);
+                        for(i = tamanhoLista(l); 0 < i; i = tamanhoLista(l)){
+                            if(problemaDeJosephus( l, &Soldado, opc,3))  printf("\n %s ",Soldado.nome_do_soldado);
+                            else{
+                                printf("\nOcorreu algum problema...");
+                                break;
+                            }
                         }
-                        printf("\n %s ",nome_do_soldado);
                     break;
 
                     default:

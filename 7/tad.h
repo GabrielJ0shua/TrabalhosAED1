@@ -1,8 +1,15 @@
-typedef struct soldado *Soldado;
-
-Soldado iniciaLista(void);
-int inserir(Soldado l, char* nome_do_soldado);
-int removeDoInicio(Soldado l, char* nome_do_soldado);
-int removeAleatorio(Soldado l, char* nome_do_soldado);
-int removeComPosicao(Soldado l,int i, char* nome_do_soldado);
-void liberaLista(Soldado l);
+struct Dados{
+    char nome_do_soldado[20];
+};
+ 
+typedef struct soldado *Batalhao;
+typedef struct Dados dado;
+Batalhao* iniciaLista(void);
+int inserirFinal(Batalhao* l, char* nome_do_soldado);
+int removeDoInicio(Batalhao* l);
+int removeAleatorio(Batalhao* l, char* nome_do_soldado);
+int removeComPosicao(Batalhao* l,int i, char* nome_do_soldado);
+void liberaLista(Batalhao* l);
+int problemaDeJosephus(Batalhao* l,dado* soldado, int qnt_percorrimento,int escolha);
+int tamanhoLista(Batalhao* l);
+int insereInicio(Batalhao* l, dado valor);
