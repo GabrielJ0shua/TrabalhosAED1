@@ -51,3 +51,47 @@ int remove_elemento(Lista *lst, int elem)
     free(aux);
     return 1;
 }
+
+void remove_todos(Lista *lst)
+{
+    Lista aux = *lst;
+    while ((*lst)->prox != NULL)//ENQUANTO o próximo elemento não for  último
+        {
+            (*lst) = (*lst)->prox; //Percorre a lista
+            free(aux);//Aumenta o contador
+            aux = *lst;
+        }
+        free(*lst);
+        lst=NULL;
+}
+
+int tamanho_lista(Lista * lst)
+{
+    int i = 1;//Se a lista não é vazia, seu tamanho é pelo menos 1
+    if (lista_vazia(*lst)==1)
+    {
+        return 0;
+    }
+    else
+    {
+        Lista aux = (*lst)->prox; // Faz aux apontar para 1o nó
+        while (aux->prox != NULL)//ENQUANTO o próximo elemento não for  último
+        {
+            aux = aux->prox; //Percorre a lista
+            i++;//Aumenta o contador
+        }
+        return i;//Retorna o tamanho
+    }
+}
+
+int remove_maior(Lista *lst)
+{
+    if(lista_vazia(*lst)==1)
+        return 0;
+    if ((*lst)->prox == NULL)
+    {
+        free(*lst);
+        return 1;
+    }
+    return 1;
+}

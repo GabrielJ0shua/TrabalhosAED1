@@ -55,13 +55,8 @@ int main()
             break;
 
             case 5:
-                scanf("%d", &input);
-                 if (remove_todos(&lst, &input)==0)
-                 {
-                     printf("Falha \n");
-                 }
-                 else
-                    printf("Elemento %c removido \n", input);
+                remove_todos(&lst);
+                    printf("Todos Removidos \n", input);
             break;
 
             case 6:
