@@ -12,4 +12,5 @@ int insere_inicio(Lista *lst, char elem);
 int tamanho_lista(Lista * lst);
 int remove_final(Lista *lst, char *elem);
 char remove_pos(Lista *lst, int pos);
+char get_posicao(Lista lst, int pos);
 #endif // CICLICO_H_INCLUDED

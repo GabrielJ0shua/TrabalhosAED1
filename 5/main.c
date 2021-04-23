@@ -3,6 +3,19 @@
 #include "ciclico.h"
 int imprime_lista(Lista lst)
 {
+    char aux;
+    int i=0;
+    if (lista_vazia(lst)== 1)
+    {
+        return 0;
+    }
+    aux = get_posicao(lst, i);
+    while (aux!=0)
+    {
+        printf("%c\n", aux);
+        aux = get_posicao(lst, i+1);
+        i++;
+    }
     return 1;
 }
 int main()

@@ -59,7 +59,7 @@ int insere_inicio(Lista *lst, char elem)
     }
     else
     {
-        N->prox = ((*lst)->prox) // Faz o novo nó apontar para o antigo 1o nó
+        N->prox = ((*lst)->prox); // Faz o novo nó apontar para o antigo 1o nó
         (*lst)->prox= N; // Faz o último nó apontar para o novo nó
     }
     return 1;
@@ -114,7 +114,7 @@ char remove_pos(Lista *lst, int pos)
     // Trata lista vazia
     if (lista_vazia(*lst) == 1)
         return 0;
-    int i = 1;
+    int i = 0;
     Lista aux = (*lst)->prox
     while (aux->prox != *lst && i < pos)//ENQUANTO o próximo elemento não for i-ésimo
         {
@@ -129,8 +129,33 @@ char remove_pos(Lista *lst, int pos)
         }
     else if (aux->prox = *lst)
         {
-
+            return 0;
         }
+    else
+    {
+        Lista aux2 = aux->prox;// Aponta nó a ser removido
+        aux->prox = aux2->prox;// Retira nó da lista
+        free(aux2);// Libera memória alocada
+    }
+    return 1;
+}
+
+char get_posicao(Lista lst, int pos)
+{
+    if (lst == NULL)
+        return 0;
+    else
+    {
+        Lista aux = lst->prox;
+        for(int i = 0; i<pos; i++)
+            {
+                if((aux->prox != lst || i==pos-1)
+                    aux=aux->prox;
+                else
+                    return 0;
+            }
+        return aux->info;
+    }
 }
 
 void apaga_lista(Lista *lst)
