@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "tad.h"
-//MUDAR PRA SWITCH CASE
+
 Lista p, p2, p3;
 int opcao = 0, ini = 0, op, tam1, tam2;
 int iniP2 = 0;
