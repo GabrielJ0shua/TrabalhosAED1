@@ -59,7 +59,7 @@ int insere_inicio(Lista *lst, char elem)
     }
     else
     {
-        N->prox = ((*lst)->prox); // Faz o novo nó apontar para o antigo 1o nó
+        N->prox = (*lst)->prox; // Faz o novo nó apontar para o antigo 1o nó
         (*lst)->prox= N; // Faz o último nó apontar para o novo nó
     }
     return 1;
@@ -114,30 +114,45 @@ char remove_pos(Lista *lst, int pos)
     // Trata lista vazia
     if (lista_vazia(*lst) == 1)
         return 0;
+    if (pos <1)
+        return 0;
     int i = 0;
-    Lista aux = (*lst)->prox
+    Lista aux = *lst;
+    char removido;
     while (aux->prox != *lst && i < pos)//ENQUANTO o próximo elemento não for i-ésimo
         {
             aux = aux->prox; //Percorre a lista
             i++;//Aumenta o contador
         }
-    if (pos==i+1 && aux->prox = *lst)
+    if (pos==i+1 && aux->prox == *lst)
         {
-            aux->prox = (*lst)->prox; //Aponta o penúltimo para o primeiro
-            free(*lst); //libera o último
-            *lst = aux;//Aponta a lista para o novo último
+            if (*lst == (*lst)->prox) // Trata lista com 1 único nó
+            {
+                removido = (*lst)->info;
+                free(*lst);
+                *lst = NULL;
+            }
+
+            else
+            {
+                removido = (*lst)->info;
+                aux->prox = (*lst)->prox; //Aponta o penúltimo para o primeiro
+                free(*lst); //libera o último
+                *lst = aux;//Aponta a lista para o novo último
+            }
         }
-    else if (aux->prox = *lst)
+    else if (aux->prox == *lst)
         {
             return 0;
         }
     else
     {
         Lista aux2 = aux->prox;// Aponta nó a ser removido
+        removido = aux2->info;
         aux->prox = aux2->prox;// Retira nó da lista
         free(aux2);// Libera memória alocada
     }
-    return 1;
+    return removido;
 }
 
 char get_posicao(Lista lst, int pos)
@@ -147,9 +162,9 @@ char get_posicao(Lista lst, int pos)
     else
     {
         Lista aux = lst->prox;
-        for(int i = 0; i<pos; i++)
+        for(int i = 1; i<pos; i++)
             {
-                if((aux->prox != lst || i==pos-1)
+                if(aux->prox != lst || i==pos-1)
                     aux=aux->prox;
                 else
                     return 0;

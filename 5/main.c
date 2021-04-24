@@ -4,7 +4,7 @@
 int imprime_lista(Lista lst)
 {
     char aux;
-    int i=0;
+    int i=1;
     if (lista_vazia(lst)== 1)
     {
         return 0;
@@ -57,12 +57,17 @@ int main()
             break;
             case 3:
                 printf("Digite o caractere a ser inserido: \n");
+                fflush(stdin);
                 scanf("%c", &input);
-                insere_inicio(&lst, input);
+                if (insere_inicio(&lst, input)==0)
+                 {
+                     printf("Falha \n");
+                 }
             break;
 
             case 4:
                  printf("Digite o elemento a ser inserido \n");
+                 fflush(stdin);
                  scanf("%c", &input);
                  if (insere_final(&lst, input)==0)
                  {
@@ -90,7 +95,7 @@ int main()
 
             case 7:
                 tam = tamanho_lista(&lst);
-                printf("%d", tam);
+                printf("A lista tem tamanho %d\n", tam);
             break;
             case 8:
                 if (remove_final(&lst, &input)==0)
@@ -101,6 +106,7 @@ int main()
                     printf("Elemento %c removido \n", input);
             break;
             case 9:
+                printf("Insira posicao a ser removida \n");
                 scanf("%d", &posicao);
                 tester = remove_pos(&lst, posicao);
                 if (tester==0)

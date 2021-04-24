@@ -1,11 +1,10 @@
 #include "duplo.h"
 struct no
 {
-    int elem;
+    int info;
     struct no * ant;
     struct no * prox;
 };
-typedef struct no * Lista
 
 Lista cria_lista()
 {
@@ -36,7 +35,7 @@ int insere_elemento(Lista *lst, int elem)
 }
 int remove_elemento(Lista *lst, int elem)
 {
-    if (lista_vazia(*lst) // Trata lista vazia
+    if (lista_vazia(*lst)==1) // Trata lista vazia
             return 0;
     Lista aux = *lst; // Faz aux apontar para 1o nó
     while (aux->prox != NULL && aux->info != elem)
@@ -52,7 +51,8 @@ int remove_elemento(Lista *lst, int elem)
     return 1;
 }
 
-void remove_todos(Lista *lst)
+
+void apaga_lista(Lista *lst)
 {
     Lista aux = *lst;
     while ((*lst)->prox != NULL)//ENQUANTO o próximo elemento não for  último
@@ -64,7 +64,6 @@ void remove_todos(Lista *lst)
         free(*lst);
         lst=NULL;
 }
-
 int tamanho_lista(Lista * lst)
 {
     int i = 1;//Se a lista não é vazia, seu tamanho é pelo menos 1
@@ -84,8 +83,9 @@ int tamanho_lista(Lista * lst)
     }
 }
 
-int remove_maior(Lista *lst)
+int remove_maior(Lista *lst, int *elem)
 {
+    Lista maior;
     if(lista_vazia(*lst)==1)
         return 0;
     if ((*lst)->prox == NULL)
@@ -93,5 +93,22 @@ int remove_maior(Lista *lst)
         free(*lst);
         return 1;
     }
+    maior = *lst;
+    Lista aux = (*lst)->prox;
+    while (aux->prox != NULL)
+    {
+        if(aux->info>maior->info)
+            maior = aux;
+        aux=aux->prox;
+    }
+    if(aux->info>maior->info)
+            maior = aux;
+    if (maior->prox != NULL)
+        (maior)->prox->ant = maior->ant;
+    if (maior->ant != NULL)
+        (maior)->ant->prox = maior->prox;
+    if (maior == *lst) *lst = maior->prox;
+    *elem = maior->info;
+    free(maior);
     return 1;
 }

@@ -1,13 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "duplo.h"
-
+int imprime_lista(Lista lst)
+{
+    return 1;
+}
 int main()
 {
-    char tester;
+    int tester;
     Lista lst, lst2;
     lst = cria_lista();
-    char input;
+    int input;
     int posicao, tam;
     int escolha = 0;
     while(escolha!=11)
@@ -55,13 +58,14 @@ int main()
             break;
 
             case 5:
-                remove_todos(&lst);
-                    printf("Todos Removidos \n", input);
+                apaga_lista(&lst);
+                    printf("Todos Removidos \n");
             break;
 
             case 6:
                 if(lista_vazia(lst)!=1)
                 {
+                    printf("A lista e:\n\n");
                     imprime_lista(lst);
                 }
                 else
@@ -81,6 +85,7 @@ int main()
                     printf("Elemento %d removido \n", input);
             break;
             case 9:
+                printf("Digite a posicao a ser removida: \n");
                 scanf("%d", &posicao);
                 tester = remove_pos(&lst, posicao);
                 if (tester==0)
@@ -92,7 +97,9 @@ int main()
             break;
 
             case 10:
-                lst2 = primos(lst);
+                lst2 = primos(&lst);
+                printf("A lista apenas com os primos e:\n\n");
+                imprime_lista(lst2);
                 break;
             case 11:
                 apaga_lista(&lst);
