@@ -40,7 +40,7 @@ int insere_elem(Reais p, float N){
     if(p == NULL || lista_cheia(p) == 1) return 0;
 
 /* SE A LISTA NAO ESTIVER CHEIA, SIMPLESMENTE VAI INSERIR O ELEMENTO NA
-    POSICAO FINAL E INCREMENTARÁ 1 EM 'FIM' PARA DIZER QUE FOI ADICIONADO UM ELEMENTO */
+    POSICAO FINAL E INCREMENTARÃ 1 EM 'FIM' PARA DIZER QUE FOI ADICIONADO UM ELEMENTO */
 
     p->num[p->Fim] = N;
     p->Fim++;
@@ -54,7 +54,7 @@ int remove_elem(Reais p, float N){
     if(p == NULL || lista_vazia(p) == 1) return 0;
 
 
-// SE O ELEMENTO QUE DESEJA SER REMOVIDO FOR O ULTIMO DA LISTA, SÓ DA UM FIM -1
+// SE O ELEMENTO QUE DESEJA SER REMOVIDO FOR O ULTIMO DA LISTA, SÃ“ DA UM FIM -1
 // PARA DIZER QUE AQUELE ELEMENTO NAO PERTENCE MAIS A LISTA
     else if(p->num[p->Fim-1] == N){p->Fim--; return 1;}
 
