@@ -3,53 +3,58 @@
 #include "duplo.h"
 int imprime_lista(Lista lst)
 {
+    int aux;
+    int i=1;
+    if (lista_vazia(lst)== 1)
+    {
+        return 0;
+    }
+    aux = get_posicao(lst, i);
+    while (aux!=0)
+    {
+        printf("%d\n", aux);
+        aux = get_posicao(lst, i+1);
+        i++;
+    }
     return 1;
 }
 int main()
 {
-    int tester;
     Lista lst, lst2;
     lst = cria_lista();
     int input;
-    int posicao, tam;
+    int tam;
     int escolha = 0;
-    while(escolha!=11)
+    while(escolha!=10)
     {
         printf("Manipulador de lista de int: \n");
-        printf("[1] Criar lista \n");
-        printf("[2] Apagar lista \n");
-        printf("[3] Inserir \n");
-        printf("[4] Remover\n");
-        printf("[5] Remover todos\n");
-        printf("[6] Imprimir Lista\n");
-        printf("[7] Tamanho da Lista\n");
-        printf("[8] Remover maior\n");
-        printf("[9] Inverter\n");
-        printf("[10] Primos\n");
-        printf("[11] Sair\n");
+        printf("[1] Apagar lista \n");
+        printf("[2] Inserir \n");
+        printf("[3] Remover\n");
+        printf("[4] Remover todos\n");
+        printf("[5] Imprimir Lista\n");
+        printf("[6] Tamanho da Lista\n");
+        printf("[7] Remover maior\n");
+        printf("[8] Inverter\n");
+        printf("[9] Primos\n");
+        printf("[10] Sair\n");
         scanf("%d", &escolha);
         switch (escolha)
         {
             case 1:
                 if(lst == NULL)
-                    lst = cria_lista();
-                else
-                    printf("Lista ja existe \n");
-            break;
-
-            case 2:
-                if(lst == NULL)
                     printf("Lista nao existe \n");
                 else
                         apaga_lista(&lst);
             break;
-            case 3:
-                printf("Digite o caractere a ser inserido: \n");
+            case 2:
+                printf("Digite o numero a ser inserido: \n");
                 scanf("%d", &input);
                 insere_elemento(&lst, input);
             break;
 
-            case 4:
+            case 3:
+                 printf("Digite o numero a ser removido: \n");
                  scanf("%d", &input);
                  if (remove_elemento(&lst, input)==0)
                  {
@@ -57,12 +62,12 @@ int main()
                  }
             break;
 
-            case 5:
+            case 4:
                 apaga_lista(&lst);
                     printf("Todos Removidos \n");
             break;
 
-            case 6:
+            case 5:
                 if(lista_vazia(lst)!=1)
                 {
                     printf("A lista e:\n\n");
@@ -72,11 +77,12 @@ int main()
                     printf("Falha, lista vazia \n");
             break;
 
-            case 7:
+            case 6:
                 tam = tamanho_lista(&lst);
-                printf("%d", tam);
+                printf("\n O tamanho da lista e: %d\n \n", tam);
             break;
-            case 8:
+
+            case 7:
                 if (remove_maior(&lst, &input)==0)
                  {
                      printf("Falha \n");
@@ -84,24 +90,28 @@ int main()
                  else
                     printf("Elemento %d removido \n", input);
             break;
-            case 9:
-                printf("Digite a posicao a ser removida: \n");
-                scanf("%d", &posicao);
-                tester = remove_pos(&lst, posicao);
-                if (tester==0)
+
+            case 8:
+                lst2 = inverte(&lst);
+                if (lst2==NULL)
                  {
-                     printf("Falha ao encontrar a posicao \n");
+                     printf("Falha ao inverter\n");
                  }
                  else
-                    printf("Elemento %d removido \n", tester);
+                 {
+                     printf("A lista e:\n\n");
+                     imprime_lista(lst2);
+                     apaga_lista(&lst2);
+                 }
             break;
 
-            case 10:
+            case 9:
                 lst2 = primos(&lst);
                 printf("A lista apenas com os primos e:\n\n");
                 imprime_lista(lst2);
+                apaga_lista(&lst2);
                 break;
-            case 11:
+            case 10:
                 apaga_lista(&lst);
                 break;
             default:
