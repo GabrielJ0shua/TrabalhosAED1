@@ -11,3 +11,15 @@
 	<stdlib.h>
 	"ciclico.h"
 
+1619294613 source:d:\c proj\5\ciclico.c
+	"ciclico.h"
+
+1618958395 d:\c proj\5\ciclico.h
+	<stdlib.h>
+	<stdio.h>
+
+1619294246 source:d:\c proj\5\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ciclico.h"
+

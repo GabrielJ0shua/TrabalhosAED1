@@ -26,36 +26,28 @@ int main()
     char input;
     int posicao, tam;
     int escolha = 0;
-    while(escolha!=10)
+    while(escolha!=9)
     {
         printf("Manipulador de lista de chars: \n");
-        printf("[1] Criar lista \n");
-        printf("[2] Apagar lista \n");
-        printf("[3] Inserir no inicio \n");
-        printf("[4] Inserir no final \n");
-        printf("[5] Remover do inicio\n");
-        printf("[6] Imprimir Lista\n");
-        printf("[7] Tamanho da Lista\n");
-        printf("[8] Remove do final\n");
-        printf("[9] Remove e printa posicao especifica\n");
-        printf("[10] Sair\n");
+        printf("[1] Apagar lista \n");
+        printf("[2] Inserir no inicio \n");
+        printf("[3] Inserir no final \n");
+        printf("[4] Remover do inicio\n");
+        printf("[5] Imprimir Lista\n");
+        printf("[6] Tamanho da Lista\n");
+        printf("[7] Remove do final\n");
+        printf("[8] Remove e printa posicao especifica\n");
+        printf("[9] Sair\n");
         scanf("%d", &escolha);
         switch (escolha)
         {
             case 1:
                 if(lst == NULL)
-                    lst = cria_lista();
-                else
-                    printf("Lista ja existe \n");
-            break;
-
-            case 2:
-                if(lst == NULL)
                     printf("Lista nao existe \n");
                 else
                         apaga_lista(&lst);
             break;
-            case 3:
+            case 2:
                 printf("Digite o caractere a ser inserido: \n");
                 fflush(stdin);
                 scanf("%c", &input);
@@ -65,7 +57,7 @@ int main()
                  }
             break;
 
-            case 4:
+            case 3:
                  printf("Digite o elemento a ser inserido \n");
                  fflush(stdin);
                  scanf("%c", &input);
@@ -75,7 +67,7 @@ int main()
                  }
             break;
 
-            case 5:
+            case 4:
                  if (remove_inicio(&lst, &input)==0)
                  {
                      printf("Falha \n");
@@ -84,7 +76,7 @@ int main()
                     printf("Elemento %c removido \n", input);
             break;
 
-            case 6:
+            case 5:
                 if(lista_vazia(lst)!=1)
                 {
                     imprime_lista(lst);
@@ -93,11 +85,12 @@ int main()
                     printf("Falha, lista vazia \n");
             break;
 
-            case 7:
+            case 6:
                 tam = tamanho_lista(&lst);
                 printf("A lista tem tamanho %d\n", tam);
             break;
-            case 8:
+
+            case 7:
                 if (remove_final(&lst, &input)==0)
                  {
                      printf("Falha \n");
@@ -105,7 +98,8 @@ int main()
                  else
                     printf("Elemento %c removido \n", input);
             break;
-            case 9:
+
+            case 8:
                 printf("Insira posicao a ser removida \n");
                 scanf("%d", &posicao);
                 tester = remove_pos(&lst, posicao);
@@ -117,9 +111,10 @@ int main()
                     printf("Elemento %c removido \n", tester);
             break;
 
-            case 10:
+            case 9:
                 apaga_lista(&lst);
-                break;
+            break;
+
             default:
                 printf("Escolha invalida");
         }
