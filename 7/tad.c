@@ -102,7 +102,7 @@ int tamanhoLista(Batalhao* l){
     return cont;
 }
 
-int problemaDeJosephus(Batalhao* l,dado* soldado, int* qnt_percorrimento,int* escolha){
+int problemaDeJosephus(Batalhao* l,dado* soldado, int* qnt_percorrimento,int* escolha, int trigger){
     if ((l == NULL) || ((*l) == NULL) || (qnt_percorrimento <= 0)) return 0;
     Batalhao aux = *l;
     int i,j;
@@ -131,11 +131,13 @@ int problemaDeJosephus(Batalhao* l,dado* soldado, int* qnt_percorrimento,int* es
         return 1;
     }
     else if(*escolha == 3){
-        while ((strcmp(soldado->nome_do_soldado,aux->dados_soldado.nome_do_soldado) != 0) && (aux->proxNo != (*l))) aux = aux->proxNo;
+        
+        if (trigger == 1){
+            while ((strcmp(soldado->nome_do_soldado,aux->dados_soldado.nome_do_soldado) != 0) && (aux->proxNo != (*l))) aux = aux->proxNo;
+            if(strcmp(soldado->nome_do_soldado,aux->dados_soldado.nome_do_soldado) != 0) return 0;
+        }
 
-        if(strcmp(soldado->nome_do_soldado,aux->dados_soldado.nome_do_soldado) != 0) return 0;
-    
-        for ( i = 0; i < (*qnt_percorrimento); i++) aux = aux->proxNo;
+        for ( i = 1; i < (*qnt_percorrimento); i++) aux = aux->proxNo;
 
         *soldado = aux->dados_soldado;
         removeElemento(l,*soldado);

@@ -32,47 +32,47 @@ int main(void){
                         scanf("%d",&opc);
                         opc1 = 1;
                         i = tamanhoLista(l);
-                        while (i != 1){
-                            if(problemaDeJosephus( l, &recruta, &opc,&opc1))  
+                        for(i = tamanhoLista(l);i > 2; i--){
+                            if(problemaDeJosephus( l, &recruta, &opc,&opc1,0))  
                                 printf("\nEliminado: %s ",recruta.nome_do_soldado);
                             else{
                                 printf("\nOcorreu algum problema...");
                                 break;
                             }
-                            i = tamanhoLista(l);
                         }
-                        while (i = 1){
-                            if(problemaDeJosephus( l, &recruta, &opc,&opc1))  
+                        for(i = tamanhoLista(l);i <= 2; i--){
+                            if(problemaDeJosephus( l, &recruta, &opc,&opc1,0)){  
                                 printf("\nGanhador: %s ",recruta.nome_do_soldado);
+                                break;
+                            }
                             else{
                                 printf("\nOcorreu algum problema...");
                                 break;
                             }
-                            i = tamanhoLista(l);
                         }
                     break;
 
                     case(2):
-                        while (i >= 2){
+                        for(i = tamanhoLista(l);i > 2; i--){
                             opc1 = 2;
-                            if(problemaDeJosephus( l, &recruta, &opc,&opc1))  
+                            if(problemaDeJosephus( l, &recruta, &opc,&opc1,0))  
                                 printf("\nEliminado: %s ",recruta.nome_do_soldado);
                             else{
                                 printf("\nOcorreu algum problema...");
                                 break;
                             }
-                            i = tamanhoLista(l);
                         }
                         printf("\nNúmero Sorteado %d",opc1);
-                        while (i != 0){
+                        for(i = tamanhoLista(l);i <= 2; i--){
                             opc1 = 1;
-                            if(problemaDeJosephus( l, &recruta, &opc,&opc1))  
+                            if(problemaDeJosephus( l, &recruta, &opc,&opc1,0)){  
                                 printf("\nGanhador: %s ",recruta.nome_do_soldado);
+                                break;
+                            }
                             else{
                                 printf("\nOcorreu algum problema...");
                                 break;
                             }
-                            i = tamanhoLista(l);
                         }
                     break;
 
@@ -83,25 +83,27 @@ int main(void){
                         setbuf(stdin,NULL);
                         printf("\nDe quantas em quantas posições será removido os soldados? ");
                         scanf("%d",&opc);
-                        while (i < 2){
-                            opc1 = 3;
-                            if(problemaDeJosephus( l, &recruta, &opc,&opc1))  
+                        opc1 = 3;
+                        j = 1;
+                        for(i = tamanhoLista(l);i > 2; i--){
+                            if(problemaDeJosephus( l, &recruta, &opc,&opc1,j))  
                                 printf("\nEliminado: %s ",recruta.nome_do_soldado);
                             else{
                                 printf("\nOcorreu algum problema...");
                                 break;
                             }
-                            i = tamanhoLista(l);
+                            j = 0;
                         }
-                        while (i != 0){
-                            opc1 = 1;
-                            if(problemaDeJosephus( l, &recruta, &opc,&opc1))  
+                        opc1 = 1;
+                        for(i = tamanhoLista(l);i <= 2; i--){
+                            if(problemaDeJosephus( l, &recruta, &opc,&opc1,0)){  
                                 printf("\nGanhador: %s ",recruta.nome_do_soldado);
+                                break;
+                            }
                             else{
                                 printf("\nOcorreu algum problema...");
                                 break;
                             }
-                            i = tamanhoLista(l);
                         }
                     break;
 
