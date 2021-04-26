@@ -17,6 +17,7 @@ int main(void)
         switch(opc){
             //Iniciando a lista
             case(1):
+                libera(l);
                 l = criaLista();
                 printf("\nPronto");   
             break;
