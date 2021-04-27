@@ -28,7 +28,8 @@ int remove_inicio(Lista *lst, char *elem)
     free(aux);    return 1;
 }
 int insere_final(Lista *lst, char elem)
-{    // Aloca um novo nó e preenche campo info
+{
+    // Aloca um novo nó e preenche campo info
     Lista N = (Lista) malloc(sizeof(struct no));
     if (N == NULL) { return 0; } // Falha: nó não alocado
     N->info = elem; // Insere o conteúdo (valor do elem)
@@ -119,7 +120,7 @@ char remove_pos(Lista *lst, int pos)
     int i = 0;
     Lista aux = *lst;
     char removido;
-    while (aux->prox != *lst && i < pos)//ENQUANTO o próximo elemento não for i-ésimo
+    while (aux->prox != *lst && i < pos-1)//ENQUANTO o próximo elemento não for pos-ésimo
         {
             aux = aux->prox; //Percorre a lista
             i++;//Aumenta o contador
@@ -131,6 +132,7 @@ char remove_pos(Lista *lst, int pos)
                 removido = (*lst)->info;
                 free(*lst);
                 *lst = NULL;
+                return removido;
             }
 
             else
@@ -139,12 +141,13 @@ char remove_pos(Lista *lst, int pos)
                 aux->prox = (*lst)->prox; //Aponta o penúltimo para o primeiro
                 free(*lst); //libera o último
                 *lst = aux;//Aponta a lista para o novo último
+                return removido;
             }
         }
-    else if (aux->prox == *lst)
-        {
-            return 0;
-        }
+    if (aux->prox == *lst)
+    {
+        return 0;
+    }
     else
     {
         Lista aux2 = aux->prox;// Aponta nó a ser removido

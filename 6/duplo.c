@@ -220,5 +220,6 @@ Lista inverte(Lista* lst)
     if (lista_vazia(lst2) == 0) // Se lista NÃO vazia
     lst2->ant = N; // Faz o antecessor do 1o nó ser o novo nó
     lst2 = N; // Faz a lista apontar para o novo nó
+
     return lst2;
 }

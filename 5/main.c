@@ -1,23 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "ciclico.h"
-int imprime_lista(Lista lst)
-{
-    char aux;
-    int i=1;
-    if (lista_vazia(lst)== 1)
-    {
-        return 0;
-    }
-    aux = get_posicao(lst, i);
-    while (aux!=0)
-    {
-        printf("%c\n", aux);
-        aux = get_posicao(lst, i+1);
-        i++;
-    }
-    return 1;
-}
+
 int main()
 {
     char tester;
@@ -79,7 +63,19 @@ int main()
             case 5:
                 if(lista_vazia(lst)!=1)
                 {
-                    imprime_lista(lst);
+                    char aux;
+                    int i=1;
+                    if (lista_vazia(lst)== 1)
+                    {
+                        printf("Falha\n");
+                    }
+                    aux = get_posicao(lst, i);
+                    while (aux!=0)
+                    {
+                        printf("%c\n", aux);
+                        aux = get_posicao(lst, i+1);
+                        i++;
+                    }
                 }
                 else
                     printf("Falha, lista vazia \n");
