@@ -34,164 +34,153 @@ void imprimir_lista(CHAR p){
 
 int main(){
 
-    menu();
+    while(op != 10){
 
-    while(scanf("%d", &op) && op != 10){
-
+        menu();
         setbuf(stdin, NULL);
+        scanf("%d", &op);
 
-        if(op < 1 || op > 10){ // RECONHECE QND DIGITA UM NUMERO QUE NAO TEM FUNCAO
-            printf("\n### Operacao Invalida ###\n\n");
-            menu();
-            continue;
-        }
-
-        if(ini == 0 && op != 1 && op != 10){ // NAO DEIXA FAZER ALGO COM A LISTA 1 SE ELA NAO EXISTIR
+        if(ini == 0 && op != 1 && op > 1 && op < 10){ // NAO DEIXA FAZER ALGO COM A LISTA 1 SE ELA NAO EXISTIR
             printf("\n### Lista NAO Inicializada ###\n\n");
-            menu();
             continue;
         }
 
         if(ini == 1 && op == 1){ // IMPEDIRA QUE APAGUE A LISTA 1 USANDO O CRIA LISTA, JA QUE TEM O COMANDO DE ESVAZIAR
             printf("\n### A Lista Ja Foi Inicializada ###\n");
             printf("### Caso deseje Esvaziar A Lista, Tecle 5 ###\n\n");
-            menu();
             continue;
         }
 
-        if(op == 1){
-            p = cria_lista();
-            if(p == 0) printf("\n### Falha ao Criar Lista ###\n\n");
-            else{
-                printf("\n### Lista Criada com Sucesso ###\n\n");
-                ini = 1;
-            }
-            menu();
-        }
+        switch(op){
 
-        if(op == 2){
-            printf("\n### A Lista possui os seguintes elementos: ###\n\n");
-            imprimir_lista(p);
-            printf("\nDigite o Elemento: ");
-            scanf("%c", &elem);
-            if(insere_ord(p, elem) == 0){
-                printf("\n### Falha ao Inserir Elemento ###\n\n");
-                menu();
-                continue;
-            }
+            case 1:
 
-            printf("\n### Elemento Inserido com Sucesso ###\n\n");
-            menu();
-        }
-
-        if(op == 3){
-            printf("\n### A Lista possui os seguintes elementos: ###\n\n");
-            imprimir_lista(p);
-            printf("\nDigite o Elemento: ");
-            scanf("%c", &elem);
-            if(remove_elem(p, elem) == 0){
-                printf("\n### Falha ao Remover Elemento ###\n\n");
-                menu();
-                continue;
-            }
-
-            printf("\n### Elemento Removido com Sucesso ###\n\n");
-            menu();
-        }
-
-        if(op == 4){
-            imprimir_lista(p);
-            menu();
-        }
-
-        if(op == 5){
-            if(esvazia_lista(p) == 0){
-                printf("\n### Falha ao Esvaziar Lista ###\n\n");
-                menu();
-                continue;
-            }
-
-            printf("\n### Lista Esvaziada com Sucesso ###\n\n");
-            printf("### A Nova Lista eh: ###\n");
-            imprimir_lista(p);
-            menu();
-        }
-
-        if(op == 6){
-            if(remove_pares(p) == 0){
-                printf("\n### Falha ao Remover Caracteres Pares ###\n\n");
-                menu();
-                continue;
-            }
-
-            printf("\n### Caracteres Pares Removidos com Sucesso ###\n\n");
-            printf("### A Nova Lista eh: ###\n");
-            imprimir_lista(p);
-            menu();
-        }
-
-        if(op == 7){
-            if(menor_elemento(p,&elem) == 0){
-                printf("\n### Falha ao Obter Menor Elemento ###\n\n");
-                menu();
-                continue;
-            }
-            printf("\n### O Menor Elemento da Lista eh '%c' ###\n\n", elem);
-            menu();
-        }
-
-        if(op == 8){
-            if(tamanho_lista(p,&tam) == 0){
-                printf("\n### Falha ao Obter Tamanho da Lista ###\n\n");
-                menu();
-                continue;
-            }
-            printf("\n### O Tamanho da Lista eh de %d Elemento(s) ###\n\n", tam);
-            menu();
-        }
-
-        if(op == 9){//INTERCALAR
-            if(iniP2 == 1){
-                libera(p2);
-                libera(p3);
-            }
-            p2 = cria_lista();//INICIALIZA LISTA P2
-            p3 = cria_lista();//INICIALIZA LISTA P3
-            iniP2 = 1;
-
-            printf("\n### INSIRA ELEMENTOS NA LISTA 2 ###\n\n");
-            printf("### Caso NAO queira Inserir Mais Elementos, Tecle SPACE e de ENTER ###\n");
-            printf("\nDigite o elemento desejado: ");
-            while(scanf("%c", &elem) && elem != ' '){//INSERIR ELEMENTOS NA LISTA P2
-                setbuf(stdin, NULL);
-                if(insere_ord(p2, elem) == 0){
-                   printf("\n### Erro ao Inserir Elemento ###\n\n");
-                   continue;
+                p = cria_lista();
+                if(p == 0) printf("\n### Falha ao Criar Lista ###\n\n");
+                else{
+                    printf("\n### Lista Criada com Sucesso ###\n\n");
+                    ini = 1;
                 }
-                printf("\n### Elemento Inserido com Sucesso ###\n");
-                printf("\n### Caso NAO queira Inserir Mais Elementos, Tecle SPACE e de ENTER ###\n");
-                printf("\nDigite o elemento desejado: ");
-            }
 
-            if(intercala_listas(p,p2,p3) == 0){//INSERE OS ELEMENTOS DE P E P2 EM P3
-                printf("\n### Falha ao Gerar Lista Intercalada ###\n\n");
-                menu();
-                continue;
-            }
-            printf("\n### Lista Intercalada Gerada com Sucesso ###\n\n");
-            printf("\n### Lista 1 ###\n");
+                break;
+
+            case 2:
+
+                printf("\n### A Lista possui os seguintes elementos: ###\n\n");
+                imprimir_lista(p);
+                printf("\nDigite o Elemento: ");
+                setbuf(stdin, NULL);
+                scanf("%c", &elem);
+                if(insere_ord(p, elem) == 0) printf("\n### Falha ao Inserir Elemento ###\n\n");
+                else printf("\n### Elemento Inserido com Sucesso ###\n\n");
+        
+                break;
+
+            case 3:
+
+                printf("\n### A Lista possui os seguintes elementos: ###\n\n");
+                imprimir_lista(p);
+                printf("\nDigite o Elemento: ");
+                setbuf(stdin, NULL);
+                scanf("%c", &elem);
+                if(remove_elem(p, elem) == 0) printf("\n### Falha ao Remover Elemento ###\n\n");
+                else printf("\n### Elemento Removido com Sucesso ###\n\n");
+
+                break;
+
+            case 4:
+
             imprimir_lista(p);
-            printf("\n### Lista 2 ###\n");
-            imprimir_lista(p2);
-            printf("\n### Lista 3 (Intercalada) ###\n");
-            imprimir_lista(p3);
-            printf("\n### Lista Intercalada Gerada com Sucesso ###\n\n");
-            menu();
+            
+            break;
+
+            case 5:
+
+                if(esvazia_lista(p) == 0) printf("\n### Falha ao Esvaziar Lista ###\n\n");
+                else{
+                    printf("\n### Lista Esvaziada com Sucesso ###\n\n");
+                    printf("### A Nova Lista eh: ###\n");
+                    imprimir_lista(p);
+                }
+
+                break;
+
+            case 6:
+
+                if(remove_pares(p) == 0) printf("\n### Falha ao Remover Caracteres Pares ###\n\n");
+                else{
+                    printf("\n### Caracteres Pares Removidos com Sucesso ###\n\n");
+                    printf("### A Nova Lista eh: ###\n");
+                    imprimir_lista(p);
+                 }
+
+                break;
+
+            case 7:
+
+                if(menor_elemento(p,&elem) == 0) printf("\n### Falha ao Obter Menor Elemento ###\n\n");
+                else printf("\n### O Menor Elemento da Lista eh '%c' ###\n\n", elem);
+            
+                break;
+
+            case 8:
+
+                if(tamanho_lista(p,&tam) == 0) printf("\n### Falha ao Obter Tamanho da Lista ###\n\n");
+                else printf("\n### O Tamanho da Lista eh de %d Elemento(s) ###\n\n", tam);
+            
+                break;
+
+            case 9:
+
+                //INTERCALAR
+                if(iniP2 == 1){
+                    libera(p2);
+                    libera(p3);
+                }
+                p2 = cria_lista();//INICIALIZA LISTA P2
+                p3 = cria_lista();//INICIALIZA LISTA P3
+                iniP2 = 1;
+
+                printf("\n### INSIRA ELEMENTOS NA LISTA 2 ###\n\n");
+                printf("### Caso NAO queira Inserir Mais Elementos, Tecle SPACE e de ENTER ###\n");
+                printf("\nDigite o elemento desejado: ");
+                setbuf(stdin, NULL);
+                while(scanf("%c", &elem) && elem != ' '){//INSERIR ELEMENTOS NA LISTA P2
+                    if(insere_ord(p2, elem) == 0) printf("\n### Erro ao Inserir Elemento ###\n\n");
+                    else{
+                        printf("\n### Elemento Inserido com Sucesso ###\n");
+                        printf("\n### Caso NAO queira Inserir Mais Elementos, Tecle SPACE e de ENTER ###\n");
+                        printf("\nDigite o elemento desejado: ");
+                    }
+                }
+
+                //INSERE OS ELEMENTOS DE P E P2 EM P3
+                if(intercala_listas(p,p2,p3) == 0) printf("\n### Falha ao Gerar Lista Intercalada ###\n\n");
+                else{  
+                    printf("\n### Lista Intercalada Gerada com Sucesso ###\n\n");
+                    printf("\n### Lista 1 ###\n");
+                    imprimir_lista(p);
+                    printf("\n### Lista 2 ###\n");
+                    imprimir_lista(p2);
+                    printf("\n### Lista 3 (Intercalada) ###\n");
+                    imprimir_lista(p3);
+                    printf("\n### Lista Intercalada Gerada com Sucesso ###\n\n");
+                }
+
+                break;
+
+                case 10:
+                    printf("\n### Fim Do Programa ###\n\n");
+
+                    break;
+
+                default:
+                    printf("\n### Operacao Invalida ###\n\n");
+
+            }
         }
 
-    }
-
-    printf("\n### Fim Do Programa ###\n\n");
+    
 
     libera(p);
     libera(p2); // IRA DAR FREE NAS LISTAS INICIALIZADAS E APONTAR PARA NULL

@@ -64,7 +64,7 @@ int remove_elem(CHAR p, char N){
     if(p == NULL || lista_vazia(p) == 1) return 0;
 
 
-// SE O ELEMENTO QUE DESEJA SER REMOVIDO FOR O ULTIMO DA LISTA, SÓ DA UM FIM -1
+// SE O ELEMENTO QUE DESEJA SER REMOVIDO FOR O ULTIMO DA LISTA, SÃ“ DA UM FIM -1
 // PARA DIZER QUE AQUELE ELEMENTO NAO PERTENCE MAIS A LISTA
     else if(p->elem[p->Fim-1] == N){p->Fim--; return 1;}
 
