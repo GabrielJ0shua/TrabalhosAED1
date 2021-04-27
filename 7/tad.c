@@ -94,8 +94,7 @@ int tamanhoLista(Batalhao* l){
     if (l == NULL || (*l) == NULL) return 0;
     int cont = 1;
     Batalhao aux = *l;
-    do
-    { 
+    do{ 
         aux = aux->proxNo;
         cont++;
     } while (aux != (*l));
@@ -107,7 +106,7 @@ int problemaDeJosephus(Batalhao* l,dado* soldado, int* qnt_percorrimento,int* es
     Batalhao aux = *l;
     int i,j;
     
-    if(*escolha == 1){    
+    if(*escolha == 1){
         for ( i = 1; i < (*qnt_percorrimento); i++) aux = aux->proxNo;
 
         *soldado = aux->dados_soldado;
@@ -116,7 +115,7 @@ int problemaDeJosephus(Batalhao* l,dado* soldado, int* qnt_percorrimento,int* es
     }
     else if(*escolha == 2){
         srand(time(NULL));
-        j = rand() % (tamanhoLista(l)) + 1; // o +1 me garante que não vai ser 0
+        j = (rand() % (tamanhoLista(l))) + 1; // o +1 me garante que não vai ser 0
         i = 0;
         while (i < j){
         aux = aux->proxNo;
@@ -131,7 +130,7 @@ int problemaDeJosephus(Batalhao* l,dado* soldado, int* qnt_percorrimento,int* es
         return 1;
     }
     else if(*escolha == 3){
-        
+       
         if (trigger == 1){
             while ((strcmp(soldado->nome_do_soldado,aux->dados_soldado.nome_do_soldado) != 0) && (aux->proxNo != (*l))) aux = aux->proxNo;
             if(strcmp(soldado->nome_do_soldado,aux->dados_soldado.nome_do_soldado) != 0) return 0;

@@ -1,7 +1,7 @@
 #include "tad.h"
 #include <stdio.h>
 #include <math.h>
-
+ 
 int main(void)
 {
     //variáveis auxiliares e lista apontando para NULL.

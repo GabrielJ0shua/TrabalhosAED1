@@ -1,6 +1,7 @@
 #include "tad.h"
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
  
 int main(void){
     int opc,opc1,i,j,aux2;
@@ -28,8 +29,9 @@ int main(void){
                 scanf("%d",&opc1);
                 switch(opc1){
                     case(1):
-                        printf("\nDe quantas em quantas posições será removido os soldados? ");
-                        scanf("%d",&opc);
+                        srand(time(NULL));
+                        opc = (rand() % (tamanhoLista(l))) + 1; // o +1 me garante que não vai ser 0
+                        printf("\nNúmero Sorteado para percorrimento %d",opc);
                         opc1 = 1;
                         i = tamanhoLista(l);
                         for(i = tamanhoLista(l);i > 2; i--){
@@ -40,6 +42,7 @@ int main(void){
                                 break;
                             }
                         }
+                        
                         for(i = tamanhoLista(l);i <= 2; i--){
                             if(problemaDeJosephus( l, &recruta, &opc,&opc1,0)){  
                                 printf("\nGanhador: %s ",recruta.nome_do_soldado);
@@ -53,6 +56,9 @@ int main(void){
                     break;
 
                     case(2):
+                        srand(time(NULL));
+                        opc = (rand() % (tamanhoLista(l))) + 1; // o +1 me garante que não vai ser 0
+                        printf("\nNúmero Sorteado para percorrimento %d",opc);
                         for(i = tamanhoLista(l);i > 2; i--){
                             opc1 = 2;
                             if(problemaDeJosephus( l, &recruta, &opc,&opc1,0))  
@@ -77,12 +83,12 @@ int main(void){
                     break;
 
                     case(3):
+                        srand(time(NULL));
+                        opc = (rand() % (tamanhoLista(l))) + 1; // o +1 me garante que não vai ser 0
                         printf("\nNome do Soldado a ser procurado: ");
                         setbuf(stdin,NULL);
                         gets(recruta.nome_do_soldado);
                         setbuf(stdin,NULL);
-                        printf("\nDe quantas em quantas posições será removido os soldados? ");
-                        scanf("%d",&opc);
                         opc1 = 3;
                         j = 1;
                         for(i = tamanhoLista(l);i > 2; i--){

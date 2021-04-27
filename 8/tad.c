@@ -44,11 +44,11 @@ int inserirOrdenado(Funcao *l,Termo equacao){
     }
     else{
         Funcao ante, atual = *l;
-        while (atual != NULL && atual->polinomio.Xn < equacao.Xn)
-        {
+        while (atual != NULL && atual->polinomio.Xn <= equacao.Xn ){
             ante = atual;
             atual = atual->proxNo;
         }
+        // fazer uma condição de se for == somar !!!
         if (atual == *l)
         {
             aux->antNo = NULL;
@@ -116,4 +116,4 @@ void libera(Funcao *l){
         }
         free(l);
     }
-}
+} 

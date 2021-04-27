@@ -10,4 +10,4 @@ int pegaValores(Funcao *l,Termo *equacao, int pos);
 int removeElemento(Funcao *l,int x);
 void limpaEquacao(Funcao *l);
 void libera(Funcao *l);
-int tamanhoDalista(Funcao *l); 
+int tamanhoDalista(Funcao *l);  
