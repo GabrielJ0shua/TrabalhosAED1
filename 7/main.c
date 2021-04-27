@@ -1,132 +1,156 @@
-#include "tad.h"
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
- 
-int main(void){
-    int opc,opc1,i,j,aux2;
-    dado recruta;
-    Batalhao* l = iniciaLista();
-    do{
-        printf("\nEscolha uma opção:\n1 - Inserir o nome dos soldados que estão cercados \n2- Uma das opções para posição inicial da contagem\n3- Sair\n");
-        scanf("%d",&opc);
-        switch(opc){
-            case(1):
-                liberaLista(l);
-                printf("\nSão quantos soldados? ");
-                scanf("%d",&i);
-                for (j = 1; j < i+1; j++){
-                    printf("\nNome do Soldado %d: ",j);
-                    setbuf(stdin,NULL);
-                    gets(recruta.nome_do_soldado);
-                    setbuf(stdin,NULL);
-                    insereFinal(l,recruta);
-                }
-            break;
+#include <string.h>
+#include "function.h"
 
-            case(2):
-                printf("\n1.Iniciar contagem a partir do primeiro soldado da lista.\n2.Iniciar contagem a partir de uma posição sorteada aleatoriamente da lista.\n3.Iniciar contagem a partir de um soldado específico\n");       
-                scanf("%d",&opc1);
-                switch(opc1){
-                    case(1):
-                        srand(time(NULL));
-                        opc = (rand() % (tamanhoLista(l))) + 1; // o +1 me garante que não vai ser 0
-                        printf("\nNúmero Sorteado para percorrimento %d",opc);
-                        opc1 = 1;
-                        i = tamanhoLista(l);
-                        for(i = tamanhoLista(l);i > 2; i--){
-                            if(problemaDeJosephus( l, &recruta, &opc,&opc1,0))  
-                                printf("\nEliminado: %s ",recruta.nome_do_soldado);
-                            else{
-                                printf("\nOcorreu algum problema...");
-                                break;
-                            }
-                        }
-                        
-                        for(i = tamanhoLista(l);i <= 2; i--){
-                            if(problemaDeJosephus( l, &recruta, &opc,&opc1,0)){  
-                                printf("\nGanhador: %s ",recruta.nome_do_soldado);
-                                break;
-                            }
-                            else{
-                                printf("\nOcorreu algum problema...");
-                                break;
-                            }
-                        }
-                    break;
+int op = 0, iniLi = 0, operacao, contagem = 0, pos, tamanho;
+Lista li;
+char nome[50];
 
-                    case(2):
-                        srand(time(NULL));
-                        opc = (rand() % (tamanhoLista(l))) + 1; // o +1 me garante que não vai ser 0
-                        printf("\nNúmero Sorteado para percorrimento %d",opc);
-                        for(i = tamanhoLista(l);i > 2; i--){
-                            opc1 = 2;
-                            if(problemaDeJosephus( l, &recruta, &opc,&opc1,0))  
-                                printf("\nEliminado: %s ",recruta.nome_do_soldado);
-                            else{
-                                printf("\nOcorreu algum problema...");
-                                break;
-                            }
-                        }
-                        printf("\nNúmero Sorteado %d",opc1);
-                        for(i = tamanhoLista(l);i <= 2; i--){
-                            opc1 = 1;
-                            if(problemaDeJosephus( l, &recruta, &opc,&opc1,0)){  
-                                printf("\nGanhador: %s ",recruta.nome_do_soldado);
-                                break;
-                            }
-                            else{
-                                printf("\nOcorreu algum problema...");
-                                break;
-                            }
-                        }
-                    break;
+void menu(){
 
-                    case(3):
-                        srand(time(NULL));
-                        opc = (rand() % (tamanhoLista(l))) + 1; // o +1 me garante que não vai ser 0
-                        printf("\nNome do Soldado a ser procurado: ");
-                        setbuf(stdin,NULL);
-                        gets(recruta.nome_do_soldado);
-                        setbuf(stdin,NULL);
-                        opc1 = 3;
-                        j = 1;
-                        for(i = tamanhoLista(l);i > 2; i--){
-                            if(problemaDeJosephus( l, &recruta, &opc,&opc1,j))  
-                                printf("\nEliminado: %s ",recruta.nome_do_soldado);
-                            else{
-                                printf("\nOcorreu algum problema...");
-                                break;
-                            }
-                            j = 0;
-                        }
-                        opc1 = 1;
-                        for(i = tamanhoLista(l);i <= 2; i--){
-                            if(problemaDeJosephus( l, &recruta, &opc,&opc1,0)){  
-                                printf("\nGanhador: %s ",recruta.nome_do_soldado);
-                                break;
-                            }
-                            else{
-                                printf("\nOcorreu algum problema...");
-                                break;
-                            }
-                        }
-                    break;
+    printf("[1] Criar Lista\n[2] Inserir Soldado\n");
+    printf("[3] Iniciar Contagem\n[4] Imprimir Lista\n");
+    printf("[5] Sair\nDigite a Opcao Desejada: ");
 
-                    default:
-                        printf("\nOpção Invalida...");
-                    break;
-                }   
-            break;
+}
 
-            case(3):
-                liberaLista(l);
-                return 0;
-            break;
-            default:
-                printf("\nOpção Invalida...");
-            break;
+void imprimir(Lista *li){
+
+    if(li != NULL){
+        pos = 1;
+        printf("\nSoldados da Lista:\n\n");
+        while(get_pos(li, pos, nome) != 0){ 
+            printf("[%d] %s", pos, nome);
+            pos++;
         }
-    }while (1);
-    return 1;
+        printf("\n");
+    }
+
+}
+
+int main(){
+
+    while(op != 5){
+
+        menu();
+        scanf("%d", &op);
+
+        if(iniLi == 0 && op > 1 && op < 5){
+            printf("\n### LISTA NAO INICIALIZADA ###\n\n");
+            continue;
+        }
+
+        switch(op){
+
+            case 1:
+
+                li = cria_lista();
+                if(li == NULL) printf("\n### FALHA ###\n\n");
+                else{
+                    printf("\n### SUCESSO ###\n\n");
+                    iniLi = 1;
+                }
+
+                break;
+
+            case 2:
+
+                printf("\nDigite o Nome do Soldado: ");
+                setbuf(stdin, NULL);
+                fgets(nome, 50, stdin);
+                if(insere_elem(&li, nome) == 0) printf("\n### FALHA ###\n\n");
+                else                            printf("\n ### SUCESSO ###\n\n");
+
+                break;
+
+            case 3:
+
+                printf("\nComo Deseja Iniciar a Contagem?\n");
+                printf("[1] A partir do primeiro soldado\n");
+                printf("[2] A partir de uma posicao aleatoria\n");
+                printf("[3] A partir de um soldado especifico\n");
+                printf("Opcao: ");
+                scanf("%d", &operacao);
+                
+                tamanho_lista(&li, &tamanho);
+                contagem = (rand() % tamanho) + 1;
+
+                if(operacao == 1){
+                    pos = 1;
+                    printf("\nSoldados Removidos:\n");
+                    while(remove1(&li, contagem, &pos, nome) != 0){
+                        printf("%s", nome);
+
+                    }
+
+                    printf("\nNumero Sorteado para Contagem: %d\n", contagem);
+                    printf("\nSoldado Sobrevivente: %s", nome);
+
+                    esvaziar_lista(&li);
+
+                    printf("\nLista Esvaziada! \n\n");
+                }
+                if(operacao == 2){
+                    pos = (rand() % tamanho) + 1;
+                    get_pos(&li, pos, nome);
+                    printf("\nSoldado Sorteado: %s", nome);
+                    printf("\nSoldados Removidos:\n");
+                    while(remove1(&li, contagem, &pos, nome) != 0){
+                        printf("%s", nome);
+
+                    }
+
+                    printf("\nNumero Sorteado para Contagem: %d\n", contagem);
+                    printf("\nSoldado Sobrevivente: %s", nome);
+
+                    esvaziar_lista(&li);
+
+                    printf("\nLista Esvaziada! \n\n");
+                }
+
+                if(operacao == 3){
+                    imprimir(&li);
+                    printf("\nNome do Soldado: ");
+                    setbuf(stdin, NULL);
+                    fgets(nome, 50, stdin);
+                    if(get_soldado(&li, &pos, nome) == 0) printf("\n Soldado nao esta na lista\n\n");
+                    else{
+                        printf("\nSoldados Removidos:\n");
+                    while(remove1(&li, contagem, &pos, nome) != 0){
+                        printf("%s", nome);
+
+                    }
+
+                    printf("\nNumero Sorteado para Contagem: %d\n", contagem);
+                    printf("\nSoldado Sobrevivente: %s", nome);
+
+                    esvaziar_lista(&li);
+
+                    printf("\nLista Esvaziada! \n\n");
+                    }
+                }
+
+                break;
+
+            case 4:
+
+                imprimir(&li);
+                break;
+
+            case 5:
+
+                printf("\n\n### FIM DO PROGRAMA ###\n\n");
+                libera_lista(&li);
+                break;
+
+            default:
+
+                printf("\n### OPCAO INVALIDA ###\n\n");
+
+        }
+
+    }
+
+    return 0;
 }
