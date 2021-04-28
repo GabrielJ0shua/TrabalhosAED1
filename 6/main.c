@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "duplo.h"
 int imprime_lista(Lista lst)
 {
