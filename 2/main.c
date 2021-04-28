@@ -2,7 +2,7 @@
 #include "function.h"
 
 CHAR p, p2, p3;
-int op = 0, ini = 0, tam;
+int op = 0, ini = 0, tam, operacao;
 int iniP2 = 0;
 char elem;
 
@@ -142,15 +142,19 @@ int main(){
                 iniP2 = 1;
 
                 printf("\n### INSIRA ELEMENTOS NA LISTA 2 ###\n\n");
-                printf("### Caso NAO queira Inserir Mais Elementos, Tecle SPACE e de ENTER ###\n");
-                printf("\nDigite o elemento desejado: ");
+                printf("### Deseja inserir elemento? ###\n[1] Sim\n[2] Nao\nOpcao: ");
                 setbuf(stdin, NULL);
-                while(scanf("%c", &elem) && elem != ' '){//INSERIR ELEMENTOS NA LISTA P2
+                scanf("%d", &operacao);
+                while(operacao != 2){//INSERIR ELEMENTOS NA LISTA P2
+                    printf("\nDigite o elemento desejado: ");
+                    setbuf(stdin,NULL);
+                    scanf("%c", &elem);
                     if(insere_ord(p2, elem) == 0) printf("\n### Erro ao Inserir Elemento ###\n\n");
                     else{
                         printf("\n### Elemento Inserido com Sucesso ###\n");
-                        printf("\n### Caso NAO queira Inserir Mais Elementos, Tecle SPACE e de ENTER ###\n");
-                        printf("\nDigite o elemento desejado: ");
+                        printf("### Deseja inserir elemento? ###\n[1] Sim\n[2] Nao\nOpcao: ");
+                        setbuf(stdin, NULL);
+                        scanf("%d", &operacao);
                     }
                 }
 
