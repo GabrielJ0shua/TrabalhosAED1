@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "tad.h"
 
 int opcao = 0, num, aux;
@@ -37,10 +36,10 @@ void imprimir_lista(Lista *li){
 
 int main(){
 
-    menu();
 
     do{
-        printf("\nDigite a opcao desejada: ");
+
+        menu();
         scanf("%d", &opcao);
         if(opcao < 1 || opcao > 11){
             printf("\nOperacao invalida\n");
@@ -56,7 +55,8 @@ int main(){
     switch(opcao){
         case 1:
             if(iniL1 == 1){
-                 printf("\nLista ja foi inicializada\n");
+                 printf("\nLista 1 já foi criada!\n");
+                 continue;
             }
             L1 = cria_lista();
             if(L1 != NULL) printf("\nFalha ao criar lista.\n");
@@ -102,6 +102,7 @@ int main(){
         case 6:
             if(iniL2 == 0){
                 printf("Lista 2 ainda nao foi criada\n");
+                continue;
             }
             if(listas_iguais(&L1, &L2) == 0) printf("\nListas diferentes\n");
             else                             printf("\nListas  iguais\n");
@@ -129,6 +130,7 @@ int main(){
           case 9:
             if(iniL2 == 0){
                 printf("Lista 2 ainda nao foi criada\n");
+                continue;
             }
             if(intercala_lista(&L1, &L2, &L3) == 0) printf("\nErro\n");
             else{
