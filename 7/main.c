@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "function.h"
+#include <time.h>
 
 int op = 0, iniLi = 0, operacao, contagem = 0, pos, tamanho;
 Lista li;
@@ -31,6 +32,8 @@ void imprimir(Lista *li){
 
 int main(){
 
+    srand(time(NULL));
+
     while(op != 5){
 
         menu();
@@ -41,7 +44,10 @@ int main(){
             continue;
         }
 
+
+
         switch(op){
+
 
             case 1:
 
