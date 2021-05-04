@@ -11,6 +11,9 @@ Funcao* criaLista(void){
     //lembre q é ponteiro de ponteiro, isso só aloca um espaço para essa lista **l.
     Funcao *l = (Funcao*) malloc(sizeof(Funcao));
     if (l != NULL) *l = NULL;
+    Termo polinomio;
+    polinomio.Xn = 0;
+    inserirOrdenado(l, polinomio);
     return l;
 }
 
@@ -42,6 +45,7 @@ int inserirOrdenado(Funcao *l,Termo equacao){
         *l = aux;
         return 1;
     }
+    removeElemento(l,0);
     else{
         Funcao ante, atual = *l;
         while (atual != NULL && atual->polinomio.Xn <= equacao.Xn ){
