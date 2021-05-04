@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "function.h"
@@ -128,6 +127,7 @@ int remove1(Lista *li, int contagem, int *pos, char *nome){
 
     int contador = 1;
     while(contador < *pos){
+        ant = aux;
         aux = aux->prox;
         contador++;
     }
@@ -158,7 +158,7 @@ int remove1(Lista *li, int contagem, int *pos, char *nome){
 
     else{//REMOVER POSICAO DO MEIO
         ant->prox = aux->prox;
-        *pos = contador;
+        *pos = ((*pos) + contador - 1) % (*li)->tamanho;
         free(aux);
     }
 
@@ -192,13 +192,12 @@ void libera_lista(Lista *li){
     if(li != NULL && (*li) != NULL){
 
 
-        Elem *aux = (*li)->inicio, *no;
-        while((*li)->inicio->prox != (*li)->final->prox){
-            no = aux;
-            aux = aux->prox;
-            (*li)->inicio = aux;
-            (*li)->final->prox = aux;
-            free(no);
+        Elem *aux = (*li)->inicio;
+        while((*li)->final->prox != (*li)->final){
+            (*li)->inicio = (*li)->inicio->prox;
+            (*li)->final->prox = (*li)->inicio;
+            free(aux);
+            aux = (*li)->inicio;
         }
         free(aux);
     }
