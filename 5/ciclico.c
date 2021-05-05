@@ -27,23 +27,51 @@ int remove_inicio(Lista *lst, char *elem)
         (*lst)->prox = aux->prox;
     free(aux);    return 1;
 }
-int insere_final(Lista *lst, char elem)
+int insere_pos(Lista *lst, char elem, int pos)
 {
     // Aloca um novo nó e preenche campo info
     Lista N = (Lista) malloc(sizeof(struct no));
     if (N == NULL) { return 0; } // Falha: nó não alocado
     N->info = elem; // Insere o conteúdo (valor do elem)
-    // Trata lista vazia
+     // Trata lista vazia
     if (lista_vazia(*lst) == 1)
+        {
+            N->prox = N; // Faz o novo nó apontar para ele mesmo
+            *lst = N; // Faz a lista apontar para o novo nó (primeiro nó)
+            return 1;
+        }
+    if (pos <1)
+        return 0;
+    int i = 0;
+    Lista aux = *lst;
+    while (aux->prox != *lst && i < pos-1)//ENQUANTO o próximo elemento não for pos-ésimo
+        {
+            aux = aux->prox; //Percorre a lista
+            i++;//Aumenta o contador
+        }
+    if (pos==i+1 && aux->prox == *lst)
+        {
+            if (*lst == (*lst)->prox) // Trata lista com 1 único nó
+            {
+                N->prox = *lst; // Faz o novo nó apontar para o antigo 1o nó
+                (*lst)->prox= N; // Faz o último nó apontar para o novo nó
+                return 1;
+            }
+            else
+            {
+                aux->prox = N; //Aponta o penúltimo para o primeiro
+                N->prox = *lst;
+                return 1;
+            }
+        }
+    if (aux->prox == *lst)
     {
-        N->prox = N; // Faz o novo nó apontar para ele mesmo
-        *lst = N; // Faz a lista apontar para o novo nó (último nó)
+        return 0;
     }
     else
     {
-        N->prox = (*lst)->prox;// Faz o novo nó apontar o 1o nó
-        (*lst)->prox = N; // Faz o último nó apontar para o novo nó
-        *lst = N; // Faz a lista apontar para o novo nó (último nó)
+        N->prox= aux->prox;
+        aux->prox=N;
     }
     return 1;
 }
@@ -81,7 +109,7 @@ int tamanho_lista(Lista * lst)
             aux = aux->prox; //Percorre a lista
             i++;//Aumenta o contador
         }
-        return i;//Retorna o tamanho
+        return i+1;//Retorna o tamanho
     }
 }
 
