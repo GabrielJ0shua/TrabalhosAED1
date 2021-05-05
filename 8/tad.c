@@ -1,19 +1,19 @@
 #include "tad.h"
 #include <stdlib.h>
-// lista duplamente encadeada por conta do deslocamento de elementos e inserção. 
+// lista duplamente encadeada por conta do deslocamento de elementos e inserção.
 struct equacaoCompleta{
     Termo polinomio;
     Funcao proxNo;
     Funcao antNo;
 };
- 
+
 Funcao* criaLista(void){
     //lembre q é ponteiro de ponteiro, isso só aloca um espaço para essa lista **l.
     Funcao *l = (Funcao*) malloc(sizeof(Funcao));
     if (l != NULL) *l = NULL;
-    Termo polinomio;
-    polinomio.Xn = 0;
-    inserirOrdenado(l, polinomio);
+    //Termo polinomio;
+    //polinomio.Xn = 0;
+    //inserirOrdenado(l, polinomio);
     return l;
 }
 
@@ -24,7 +24,7 @@ int tamanhoDalista(Funcao *l){
     while (aux != NULL){
         cont++;
         aux = aux->proxNo;
-    }  
+    }
     return cont;
 }
 
@@ -37,17 +37,15 @@ int listaVazia(Funcao* l){
 int inserirOrdenado(Funcao *l,Termo equacao){
     if(l == NULL) return 0;
     Funcao aux = (Funcao) malloc(sizeof(struct equacaoCompleta));
-    if (aux ==NULL) return 0;
+    if (aux == NULL) return 0;
     aux->polinomio = equacao;
     if (listaVazia(l)){
         aux->proxNo = NULL;
         aux->antNo = NULL;
         *l = aux;
         //removeElemento(l,0);
-
         return 1;
     }
-    
     else{
         Funcao ante, atual = *l;
         while (atual != NULL && atual->polinomio.Xn <= equacao.Xn ){
@@ -55,14 +53,14 @@ int inserirOrdenado(Funcao *l,Termo equacao){
             atual = atual->proxNo;
         }
         // fazer uma condição de se for == somar !!!
-        if (atual == *l)
+        if (atual == *l)//inserção no inicio
         {
             aux->antNo = NULL;
             (*l)->antNo = aux;
             aux->proxNo = (*l);
             *l = aux;
         }
-        else{
+        else{// no meio ou final
             aux->proxNo = ante->proxNo;
             aux->antNo = ante;
             ante->proxNo = aux;
@@ -108,6 +106,7 @@ void limpaEquacao(Funcao *l){
             *l = (*l)->proxNo;
             free(aux);
         }
+        *l = NULL;
     }
 }
 
@@ -122,4 +121,4 @@ void libera(Funcao *l){
         }
         free(l);
     }
-} 
+}
