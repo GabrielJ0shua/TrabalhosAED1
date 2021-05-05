@@ -1,7 +1,7 @@
 #include "tad.h"
 #include <stdio.h>
 #include <math.h>
- 
+
 int main(void)
 {
     //variáveis auxiliares e lista apontando para NULL.
@@ -19,7 +19,7 @@ int main(void)
             case(1):
                 //libera(l);
                 l = criaLista();
-                printf("\nPronto");   
+                printf("\nPronto");
             break;
             //Inserindo o valor e verificando se deu certo
             case(2):
@@ -31,14 +31,14 @@ int main(void)
                 scanf("%d",&equacao.Xn);
                 i = inserirOrdenado(l,equacao);
                 if (i == 1) printf("\nPronto");
-                else printf("\nNão Inserido.");                
+                else printf("\nNão Inserido.");
             break;
             //verificando se tem valores antes de imprimir e imprimir
             case(3):
                 qnt = tamanhoDalista(l);
                 printf("\n");
-                
-                for(i = qnt; i > 0;i++){
+
+                for(i = qnt; i > 0;i--){
                     if (pegaValores(l,&equacao,i) == 0){
                         printf("\nNão foi possível...");
                         break;
@@ -65,7 +65,7 @@ int main(void)
                 qnt = tamanhoDalista(l);
                 printf("\nValor do termo X: ");
                 scanf("%f",&x);
-                for(i = qnt; i > 0;i++){
+                for(i = qnt; i > 0;i--){
                     if (pegaValores(l,&equacao,i) == 0){
                         printf("\nNão foi possível...");
                         break;
@@ -83,7 +83,7 @@ int main(void)
             default:
                 printf("\nOpção Invalida...");
             break;
-        } 
+        }
     }while (1);
     libera(l);
     return 1; //programa saiu dos casos então é erro, melhor encerrar por aqui
