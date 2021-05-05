@@ -43,9 +43,11 @@ int inserirOrdenado(Funcao *l,Termo equacao){
         aux->proxNo = NULL;
         aux->antNo = NULL;
         *l = aux;
+        //removeElemento(l,0);
+
         return 1;
     }
-    removeElemento(l,0);
+    
     else{
         Funcao ante, atual = *l;
         while (atual != NULL && atual->polinomio.Xn <= equacao.Xn ){

@@ -12,12 +12,12 @@ int main(void)
     //Menu
     do
     {
-        printf("\nEscolha uma opção:\n1 - Inicializar um polinômio\n2-Inserir um novo termo ak*x^k no polinômio existente\n3-Imprimir P(x)\n4-Eliminar o termo associado à k-ésima potência\n5-Reinicializar um polinômio\n6-Calcular o valor de P(x) para um valor de x solicitado\n7-Sair do sistema\n");
+        printf("\nEscolha uma opcao:\n1 - Inicializar um polinomio\n2-Inserir um novo termo ak*x^k no polinomio existente\n3-Imprimir P(x)\n4-Eliminar o termo associado a k-esima potencia\n5-Reinicializar um polinomio\n6-Calcular o valor de P(x) para um valor de x solicitado\n7-Sair do sistema\n");
         scanf("%d",&opc);
         switch(opc){
             //Iniciando a lista
             case(1):
-                libera(l);
+                //libera(l);
                 l = criaLista();
                 printf("\nPronto");   
             break;
