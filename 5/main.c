@@ -9,7 +9,7 @@ int main()
     char input;
     int posicao, tam;
     int escolha = 0;
-    while(escolha!=9)
+    while(escolha!=10)
     {
         printf("Manipulador de lista de chars: \n");
         printf("[1] Apagar lista \n");
@@ -20,7 +20,8 @@ int main()
         printf("[6] Tamanho da Lista\n");
         printf("[7] Remove do final\n");
         printf("[8] Remove e printa posicao especifica\n");
-        printf("[9] Sair\n");
+        printf("[9] Insere no final\n");
+        printf("[10] Sair\n");
         scanf("%d", &escolha);
         switch (escolha)
         {
@@ -107,8 +108,16 @@ int main()
                  else
                     printf("Elemento %c removido \n", tester);
             break;
-
             case 9:
+                printf("Digite o caractere a ser inserido: \n");
+                fflush(stdin);
+                scanf("%c", &input);
+                if (insere_final(&lst, input)==0)
+                 {
+                     printf("Falha \n");
+                 }
+            break;
+            case 10:
                 apaga_lista(&lst);
             break;
 

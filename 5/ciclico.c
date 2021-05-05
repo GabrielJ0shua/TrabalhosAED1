@@ -1,4 +1,5 @@
 #include "ciclico.h"
+#include <stdlib.h>
 struct no
 {
     char info;
@@ -36,9 +37,14 @@ int insere_pos(Lista *lst, char elem, int pos)
      // Trata lista vazia
     if (lista_vazia(*lst) == 1)
         {
-            N->prox = N; // Faz o novo nó apontar para ele mesmo
-            *lst = N; // Faz a lista apontar para o novo nó (primeiro nó)
-            return 1;
+            if(pos==1)
+            {
+                N->prox = N; // Faz o novo nó apontar para ele mesmo
+                *lst = N; // Faz a lista apontar para o novo nó (primeiro nó)
+                return 1;
+            }
+            else
+                return 0;
         }
     if (pos <1)
         return 0;
@@ -101,16 +107,17 @@ int tamanho_lista(Lista * lst)
     {
         return 0;
     }
-    else
+    if((*lst)->prox==*lst)
+        return 1;
+
+    Lista aux = (*lst)->prox; // Faz aux apontar para 1o nó
+    while (aux->prox != *lst)//ENQUANTO o próximo elemento não for  último
     {
-        Lista aux = (*lst)->prox; // Faz aux apontar para 1o nó
-        while (aux->prox != *lst)//ENQUANTO o próximo elemento não for  último
-        {
-            aux = aux->prox; //Percorre a lista
-            i++;//Aumenta o contador
-        }
-        return i+1;//Retorna o tamanho
+        aux = aux->prox; //Percorre a lista
+        i++;//Aumenta o contador
     }
+    return i+1;//Retorna o tamanho
+
 }
 
 int remove_final(Lista *lst, char *elem)
@@ -215,4 +222,23 @@ void apaga_lista(Lista *lst)
         }
         free(*lst);
         lst=NULL;
+}
+
+int insere_final(Lista *lst, char elem)
+{
+    // Aloca um novo nó e preenche campo info
+    Lista N = (Lista) malloc(sizeof(struct no));
+    if (N == NULL) { return 0; } // Falha: nó não alocado
+    N->info = elem; // Insere o conteúdo (valor do elem)
+    // Trata lista vazia
+    if(lista_vazia(*lst) == 1)
+    {
+        N->prox = N; // Faz o novo nó apontar para ele mesmo
+        *lst = N; // Faz a lista apontar para o novo nó (primeiro nó)
+        return 1;
+    }
+     N->prox = (*lst)->prox; // Faz o novo nó apontar para o antigo 1o nó
+    (*lst)->prox= N; // Faz o último nó apontar para o novo nó
+    *lst = N;
+    return 1;
 }

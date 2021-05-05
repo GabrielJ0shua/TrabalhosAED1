@@ -1,7 +1,7 @@
 #ifndef DUPLO_H_INCLUDED
 #define DUPLO_H_INCLUDED
-#include <stdio.h>
-#include <stdlib.h>
+
+
 
 typedef struct no * Lista;
 Lista cria_lista();
