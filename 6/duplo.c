@@ -1,5 +1,6 @@
 #include "duplo.h"
 #include <math.h>
+#include <stdlib.h>
 struct no
 {
     int info;
