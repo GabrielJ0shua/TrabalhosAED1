@@ -192,10 +192,6 @@ Lista inverte(Lista* lst)
     Lista lst2 = cria_lista();
     while (aux->prox != NULL)//ENQUANTO existir prox elemento
         {
-            aux = aux->prox; //Percorre a lista
-        }
-    while  (aux->ant!=NULL)
-        {
             Lista N = (Lista) malloc(sizeof(struct no));
             if (N == NULL)
                 { return NULL; }
@@ -207,7 +203,7 @@ Lista inverte(Lista* lst)
             lst2->ant = N; // Faz o antecessor do 1o nó ser o novo nó
             lst2 = N; // Faz a lista apontar para o novo nó
 
-            aux = aux->ant; //Percorre a lista
+            aux = aux->prox; //Percorre a lista
         }
 
     Lista N = (Lista) malloc(sizeof(struct no));

@@ -14,7 +14,7 @@ int main()
         printf("Manipulador de lista de chars: \n");
         printf("[1] Apagar lista \n");
         printf("[2] Inserir no inicio \n");
-        printf("[3] Inserir no final \n");
+        printf("[3] Inserir posicional \n");
         printf("[4] Remover do inicio\n");
         printf("[5] Imprimir Lista\n");
         printf("[6] Tamanho da Lista\n");
@@ -44,7 +44,9 @@ int main()
                  printf("Digite o elemento a ser inserido \n");
                  fflush(stdin);
                  scanf("%c", &input);
-                 if (insere_final(&lst, input)==0)
+                 printf("Digite a posicao desejada \n");
+                 scanf("%d", &posicao);
+                 if (insere_pos(&lst, input, posicao)==0)
                  {
                      printf("Falha \n");
                  }

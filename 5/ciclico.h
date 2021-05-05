@@ -7,7 +7,7 @@ Lista cria_lista();
 void apaga_lista(Lista *lst);
 int lista_vazia (Lista lst);
 int remove_inicio(Lista *lst, char *elem);
-int insere_final(Lista *lst, char elem);
+int insere_pos(Lista *lst, char elem, int pos);
 int insere_inicio(Lista *lst, char elem);
 int tamanho_lista(Lista * lst);
 int remove_final(Lista *lst, char *elem);
