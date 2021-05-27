@@ -56,7 +56,7 @@ int main(){
 			scanf("%d", &numero);
 			if(numero < 0){ 
 				printf("\nFim do programa\n\n");
-				libera(p);
+				libera(&p);
 				break;
 			}
 			while(1){

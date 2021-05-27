@@ -9,4 +9,4 @@ int push(Pilha p, int numero);
 int pop(Pilha p, int *numero);
 int le_topo(Pilha p, int *numero);
 int esvazia(Pilha p);
-void libera(Pilha p);
+void libera(Pilha *p);

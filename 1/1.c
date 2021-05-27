@@ -19,14 +19,14 @@ Pilha cria_pilha(){
 
 int pilha_cheia(Pilha p){
 
-	if(p != NULL && p->topo == MAX-1) return 1;
+	if(p->topo == MAX-1) return 1;
 	else			  return 0;
 
 }
 
 int pilha_vazia(Pilha p){
 
-	if(p != NULL && p->topo == -1) return 1;
+	if(p->topo == -1) return 1;
 	else			return 0;
 
 }
@@ -73,11 +73,11 @@ int esvazia(Pilha p){
 
 }
 
-void libera(Pilha p){
+void libera(Pilha *p){
 
-	if(p != NULL){
-		free(p);
-		p = NULL;
+	if(*p != NULL){
+		free(*p);
+		*p = NULL;
 	}
 
 }
