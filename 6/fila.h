@@ -15,5 +15,5 @@ int insere_ord(Fila f, struct paciente elem);
 int fila_cheia(Fila f);
 int fila_vazia(Fila f);
 Fila cria_fila();
-void libera_fila(Fila f);
+void libera_fila(Fila *f);
 #endif // FILA_H_INCLUDED
