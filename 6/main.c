@@ -85,14 +85,14 @@ int main()
                         remove_inicio(f2, &input);
                         insere_ord(f, input);
                     }
-                    libera_fila(f2);
+                    libera_fila(&f2);
                 }
                 else
                     printf("Falha, fila vazia \n");
             break;
 
             case 6:
-                libera_fila(f);
+                libera_fila(&f);
             break;
 
             default:
