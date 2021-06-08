@@ -81,7 +81,7 @@ int remove_inicio(Fila f, struct paciente *elem)// Remove o elemento do inicio
         return 0;
     *elem = f->info[f->ini];
     f->ini = (f->ini+1)%max; // Incremento circular
-    f->cont--; // Decremento n„o circular
+    f->cont--; // Decremento n√£o circular
         return 1;
 }
 
@@ -93,8 +93,10 @@ int esvazia_fila (Fila f)
     return 1;
 }
 
-void libera_fila(Fila f)
+void libera_fila(Fila *f)
 {
-    free(f);
-    f=NULL;
+    if(*f != NULL){
+        free(*f);
+        *f=NULL;
+    }
 }
