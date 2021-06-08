@@ -327,6 +327,8 @@ int main(){
 	}
 
 	libera(&li);
+	libera(&vacinados);
+	libera_fila(fi);
 
 	return 0;
 }
