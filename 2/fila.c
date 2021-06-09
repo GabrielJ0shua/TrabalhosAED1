@@ -1,12 +1,6 @@
 #include "fila.h"
 #include <stdlib.h>
 
-struct unionTipo
-{
-    union parte valor;
-    int tipo;
-};
-
 struct no
 {
     struct unionTipo info;
@@ -18,36 +12,61 @@ Pilha cria_pilha()
     return NULL;
 }
 
-void libera_pilha(Pilha*pi){
-    if(pi != NULL){
+void liberaPilha(Pilha*pi){
+    if(*pi != NULL){
         Pilha no;
         while ((*pi) != NULL){
             no = *pi;
             *pi = (*pi)->prox;
             free(no);
         }
-        free(pi);        
+        free(*pi);
     }
+    *pi = NULL;
 }
 
-int pilha_vazia(Pilha* plh){
+int pilha_vazia(Pilha plh){
     if(plh==NULL)
         return 1;
     else
         return 0;
 }
 
-int push(Pilha * plh, union parte elem, int tipo)
+int push(Pilha * plh, struct unionTipo elem)
 {
-    Pilha no = (Pilha) malloc(sizeof(*no));
+    Pilha no = (Pilha)malloc(sizeof(*no));
     if (no==NULL)
         return 0;
-    (no->info).valor = elem;
-    (no->info).tipo = tipo;
+    if(elem.tipo == 1)
+    {
+        if(elem.valor.cara <65 || elem.valor.cara>70)
+        {
+            switch (elem.valor.cara)
+            {
+                case 40:
+                case 41:
+                case 42:
+                case 43:
+                case 45:
+                case 47:
+                case 91:
+                case 93:
+                case 94:
+                case 121:
+                case 123:
+                case 125:
+                    break;
+                default:
+                    return 2;
+            }
+        }
+    }
+    no->info = elem;
     no->prox = *plh;
     *plh= no;
     return 1;
 }
+
 
 int pop(Pilha * plh, struct unionTipo * elem){
     if (pilha_vazia(*plh) == 1)
@@ -75,72 +94,85 @@ int valida_escopo(Pilha plh){
     struct unionTipo topo;
     while (pilha_vazia(aux)!=1)
     {
-        if((aux->info).tipo == 1)
+        if(aux->info.tipo == 1)
         {
-            switch ((aux->info).valor.cara)
+            switch (aux->info.valor.cara)
             {
-                case '(':
+                case (40):
                     if(pilha_vazia(escopo)==1)
                     {
-                        push(&escopo, (aux->info).valor, 1);
+                        push(&escopo, aux->info);
                     }
                     else
                     {
                         get_topo(escopo, &topo);
-                        if(topo.valor.cara == '{')
+                        if(topo.valor.cara == 123)
                             return 3;
-                        push(&escopo, (aux->info).valor, 1);
+                        push(&escopo, aux->info);
                     }
                     break;
-                case '[':
+                case (91):
                     if(pilha_vazia(escopo)==1)
                     {
-                        push(&escopo, (aux->info).valor, 1);
+                        push(&escopo, aux->info);
                     }
                     else
                     {
                         get_topo(escopo, &topo);
-                        if(topo.valor.cara == '(')
+                        if(topo.valor.cara == 40)
                             return 3;
-                        push(&escopo, (aux->info).valor, 1);
+                        push(&escopo, aux->info);
                     }
                     break;
-                case '{':
+                case (123):
                     if(pilha_vazia(escopo)==1)
                     {
-                        push(&escopo, (aux->info).valor, 1);
+                        push(&escopo, aux->info);
                     }
                     else
                     {
                         get_topo(escopo, &topo);
-                        if(topo.valor.cara == '('||topo.valor.cara == '[')
+                        if(topo.valor.cara == 40||topo.valor.cara == 91)
                             return 3;
-                        push(&escopo, (aux->info).valor, 1);
+                        push(&escopo, aux->info);
                     }
                     break;
-                case ')':
+                case (41):
                     if(pilha_vazia(escopo)==1)
                         return 2;
                     get_topo(escopo, &topo);
-                        if(topo.valor.cara == '['||topo.valor.cara == '{')
+                    while (topo.valor.cara!=91)
+                    {
+
+                        if(topo.valor.cara == 91||topo.valor.cara == 123)
                             return 4;
-                    pop(&escopo, &topo);
+                        pop(&escopo, &topo);
+                    }
+
                     break;
-                case '}':
+                case (125):
                     if(pilha_vazia(escopo)==1)
                         return 2;
                     get_topo(escopo, &topo);
-                        if(topo.valor.cara == '['||topo.valor.cara == '(')
+                    while (topo.valor.cara!=91)
+                    {
+
+                        if(topo.valor.cara == 91||topo.valor.cara == 40)
                             return 4;
-                    pop(&escopo, &topo);
+                        pop(&escopo, &topo);
+                    }
                     break;
-                case ']':
+                case (93):
                     if(pilha_vazia(escopo)==1)
                         return 2;
                     get_topo(escopo, &topo);
-                        if(topo.valor.cara == '{'||topo.valor.cara == '(')
+                    while (topo.valor.cara!=91)
+                    {
+
+                        if(topo.valor.cara == 123||topo.valor.cara == 40)
                             return 4;
-                    pop(&escopo, &topo);
+                        pop(&escopo, &topo);
+                    }
                     break;
                 default:
                     break;
@@ -164,28 +196,28 @@ int prioridade (char a, char b)
 
         switch (vetor[i])
         {
-                    case '+':
+                    case (43):
                         prioridade[i] = 1;
                         break;
-                    case '*':
+                    case (42):
                         prioridade[i] = 2;
                         break;
-                    case '/':
+                    case (47):
                         prioridade[i] = 2;
                         break;
-                    case '-':
+                    case (45):
                         prioridade[i] = 1;
                         break;
-                    case '^':
+                    case (94):
                         prioridade[i] =3;
                         break;
-                    case '(':
+                    case (40):
                         prioridade[i] =0;
                         break;
-                    case '[':
+                    case (91):
                         prioridade[i] =0;
                         break;
-                    case '{':
+                    case (123):
                         prioridade[i] =0;
                         break;
                     default:
@@ -213,101 +245,106 @@ int converte_pos_fixo(Pilha plh, Pilha * resultado){
         {
             switch ((perc->info).valor.cara)
             {
-                case '[':
-                push(&aux, (perc->info).valor, 1);
-                    break;
-                case '(':
-                push(&aux, (perc->info).valor, 1);
-                    break;
-                case '{':
-                push(&aux, (perc->info).valor, 1);
-                    break;
-                case '+':
-                    while (pilha_vazia(aux)!=1)
-                    {
-                        flag_prioridade = prioridade((perc->info).valor.cara, (aux->info).valor.cara);
-                        if (flag_prioridade==1)
-                        {
-                            pop(&aux, &armazena);
-                            push(&conv, (perc->info).valor, 1);
-                        }
-                    }
-                    push(&conv, (perc->info).valor, 1);
+                case (91):
+                push(&aux, perc->info);
                 break;
-                case '*':
-                    while (pilha_vazia(aux)!=1)
+                case (40):
+                push(&aux, perc->info);
+                break;
+                case (123):
+                push(&aux, perc->info);
+                break;
+                case (43):
+                    while (flag_prioridade==1||pilha_vazia(aux)==1)
                     {
-                        flag_prioridade = prioridade((perc->info).valor.cara, (aux->info).valor.cara);
+                        flag_prioridade = prioridade(perc->info.valor.cara, aux->info.valor.cara);
                         if (flag_prioridade==1)
                         {
                             pop(&aux, &armazena);
-                            push(&conv, (perc->info).valor, 1);
+                            push(&conv, perc->info);
                         }
                     }
-                    push(&conv, (perc->info).valor, 1);
+                    push(&conv, perc->info);
+                    flag_prioridade=1;
                     break;
-                case '/':
-                    while (pilha_vazia(aux)!=1)
+                case (42):
+                    while (flag_prioridade==1||pilha_vazia(aux)==1)
                     {
-                        flag_prioridade = prioridade((perc->info).valor.cara, (aux->info).valor.cara);
+                        flag_prioridade = prioridade(perc->info.valor.cara, aux->info.valor.cara);
                         if (flag_prioridade==1)
                         {
                             pop(&aux, &armazena);
-                            push(&conv, (perc->info).valor, 1);
+                            push(&conv, perc->info);
                         }
                     }
-                    push(&conv, (perc->info).valor, 1);
+                    push(&conv, perc->info);
+                    flag_prioridade=1;
                     break;
-                case '-':
-                    while (pilha_vazia(aux)!=1)
+                case (47):
+                    while (flag_prioridade==1||pilha_vazia(aux)==1)
                     {
-                        flag_prioridade = prioridade((perc->info).valor.cara, (aux->info).valor.cara);
+                        flag_prioridade = prioridade(perc->info.valor.cara, aux->info.valor.cara);
                         if (flag_prioridade==1)
                         {
                             pop(&aux, &armazena);
-                            push(&conv, (perc->info).valor, 1);
+                            push(&conv, perc->info);
                         }
                     }
-                    push(&conv, (perc->info).valor, 1);
+                    push(&conv, perc->info);
+                    flag_prioridade=1;
                     break;
-                case '^':
-                    while (pilha_vazia(aux)!=1)
+                case (45):
+                    while (flag_prioridade==1||pilha_vazia(aux)==1)
                     {
-                        flag_prioridade = prioridade((perc->info).valor.cara, (aux->info).valor.cara);
+                        flag_prioridade = prioridade(perc->info.valor.cara, aux->info.valor.cara);
                         if (flag_prioridade==1)
                         {
                             pop(&aux, &armazena);
-                            push(&conv, (perc->info).valor, 1);
+                            push(&conv, perc->info);
                         }
                     }
-                    push(&conv, (perc->info).valor, 1);
+                    push(&conv, perc->info);
+                    flag_prioridade=1;
                     break;
-                case ']':
-                    while ((aux->info).valor.cara != '[')
+                case (94):
+                    while (flag_prioridade==1||pilha_vazia(aux)==1)
+                    {
+                        flag_prioridade = prioridade(perc->info.valor.cara, aux->info.valor.cara);
+                        if (flag_prioridade==1)
+                        {
+                            pop(&aux, &armazena);
+                            push(&conv, perc->info);
+                        }
+                    }
+                    push(&conv, perc->info);
+                    flag_prioridade=1;
+                    break;
+                case (93):
+                    while (aux->info.valor.cara != 91)
                     {
                         pop(&aux, &armazena);
-                        push(&conv, (perc->info).valor, 1);
+                        push(&conv, perc->info);
                     }
                     pop(&aux, &armazena);
                     break;
-                case ')':
-                    while ((aux->info).valor.cara != '(')
+                case (41):
+                    while (aux->info.valor.cara != 40)
                     {
                         pop(&aux, &armazena);
-                        push(&conv, (perc->info).valor, 1);
+                        push(&conv, perc->info);
                     }
                     pop(&aux, &armazena);
                     break;
-                case '}':
-                    while ((aux->info).valor.cara != '{')
+                case (125):
+                    while (aux->info.valor.cara != 123)
                     {
                         pop(&aux, &armazena);
-                        push(&conv, (perc->info).valor, 1);
+                        push(&conv, perc->info);
                     }
                     pop(&aux, &armazena);
                     break;
                 default:
-                    push(&conv, (perc->info).valor, 1);
+                    push(&conv, perc->info);
                     break;
             }
         }
@@ -317,7 +354,56 @@ int converte_pos_fixo(Pilha plh, Pilha * resultado){
     return 1;
 }
 
-int avaliaçãoDaExpressao(Pilha plh, Pilha * resultado){
-    if(converte_pos_fixo(plh, resultado) != 1) return 0;
-    
+int tamanho_pilha(Pilha plh)
+{
+    if(pilha_vazia(plh)==1)
+        return 0;
+    int i=0;
+    Pilha aux = plh;
+    while(pilha_vazia(aux)!=1)
+    {
+        i++;
+        aux= aux->prox;
+    }
+    return i+1;
+}
+int encontra_literais(Pilha plh, Pilha * literal)
+{
+    if(pilha_vazia(plh)==1)
+        return 0;
+    liberaPilha(literal);
+    Pilha aux= plh;
+    char lista[6]= "------";
+    int i=0, j=0;
+    while (pilha_vazia(aux)!=1)
+    {
+        if(aux->info.valor.cara >64 && aux->info.valor.cara<71)
+        {
+            while(i<6)
+            {
+                if(aux->info.valor.cara==lista[i])
+                {
+                    break;
+                }
+                if(i==5)
+                {
+                    lista[j]=aux->info.valor.cara;
+                    push(literal, aux->info);
+                    j++;
+                }
+                i++;
+            }
+            i=0;
+        }
+        aux=aux->prox;
+    }
+    return 1;
+}
+
+int avalia_expressao(Pilha plh, char literais[], double doubles[], int tam , double * fim)
+{
+    Pilha aux = plh;
+    Pilha valores = cria_pilha();
+    Pilha operandos = cria_pilha();
+    return 0;
 }
