@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1619376230 source:d:\c proj\6\main.c
+	<stdio.h>
+	<stdlib.h>
+	"duplo.h"
+
+1619375758 d:\c proj\6\duplo.h
+	<stdio.h>
+	<stdlib.h>
+
+1619481852 source:d:\c proj\6\duplo.c
+	"duplo.h"
+	<math.h>
+
